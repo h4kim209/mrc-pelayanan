@@ -764,9 +764,12 @@ export default function RiwayatPage() {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>Detail Peminjaman</AlertDialogTitle>
-                    <AlertDialogDescription asChild>
-                      {detailLoan ? (
-                        <div className="space-y-6">
+                    <AlertDialogDescription>
+                      Informasi lengkap riwayat peminjaman barang.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  {detailLoan && (
+                    <div className="space-y-6">
                           {/* Borrower Card */}
                           <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-accent-100 to-accent-200 dark:from-accent-900/30 dark:to-accent-800/30 border border-accent-200 dark:border-accent-700 shadow-sm">
                             <div className={`flex-shrink-0 w-14 h-14 rounded-full ${getColorFromName(detailLoan.borrower?.name)} flex items-center justify-center text-white text-2xl font-bold`}>
@@ -900,9 +903,7 @@ export default function RiwayatPage() {
                             </ul>
                           </div>
                         </div>
-                      ) : <div />}
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
+                  )}
                   <AlertDialogFooter>
                     <Button
                       variant="outline"

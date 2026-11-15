@@ -53,6 +53,7 @@ export default function PengembalianPage() {
   const [settings, setSettings] = useState<any>(null)
   const [detailLoan, setDetailLoan] = useState<LoanWithDetails | null>(null)
   const [isDetailOpen, setIsDetailOpen] = useState(false)
+  const [reminderLoan, setReminderLoan] = useState<LoanWithDetails | null>(null)
   const [isReminderOpen, setIsReminderOpen] = useState(false)
 
   const router = useRouter()
@@ -329,9 +330,10 @@ export default function PengembalianPage() {
   }
 
   const handleSendReminder = async () => {
-    if (!detailLoan) return;
+    const loan = reminderLoan || detailLoan;
+    if (!loan) return;
     try {
-      const itemsBody = (detailLoan.itemDetails || []).map((it: any) => ({
+      const itemsBody = (loan.itemDetails || []).map((it: any) => ({
         item_name: it.name || "Barang",
         qty: 1
       }));
@@ -341,20 +343,20 @@ export default function PengembalianPage() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          id: detailLoan.id,
-          number: detailLoan.borrower?.phone || "",
-          name: detailLoan.borrower?.name || "",
-          start_date: detailLoan.borrowDate,
-          due_date: detailLoan.dueDate,
+          id: loan.id,
+          number: loan.borrower?.phone || "",
+          name: loan.borrower?.name || "",
+          start_date: loan.borrowDate,
+          due_date: loan.dueDate,
           items: itemsBody,
-          purpose: detailLoan.purpose || "-",
-          notes: detailLoan.notes || ""
+          purpose: loan.purpose || "-",
+          notes: loan.notes || ""
         })
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        toast.success("Pengingat berhasil dikirim ke WhatsApp " + (detailLoan.borrower?.name || "peminjam"));
-        setSuccess("Pengingat berhasil dikirim ke " + (detailLoan.borrower?.name || "peminjam"));
+        toast.success("Pengingat berhasil dikirim ke WhatsApp " + (loan.borrower?.name || "peminjam"));
+        setSuccess("Pengingat berhasil dikirim ke " + (loan.borrower?.name || "peminjam"));
       } else {
         const errorText = data.error || "Gagal mengirim pengingat ke WhatsApp";
         toast.error(errorText);
@@ -364,8 +366,10 @@ export default function PengembalianPage() {
       const msg = err?.message || "Gagal menghubungi server pengingat";
       toast.error(msg);
       setError(msg);
+    } finally {
+      setIsReminderOpen(false);
+      setReminderLoan(null);
     }
-    setIsReminderOpen(false);
   }
 
   const getStatusBadge = (loan: LoanWithDetails) => {
@@ -681,91 +685,92 @@ export default function PengembalianPage() {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>Detail Peminjaman</AlertDialogTitle>
-                    <AlertDialogDescription asChild>
-                      {detailLoan ? (
-                        <div className="space-y-6">
-                          {/* Borrower Card */}
-                          <div className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-accent-100 to-accent-200 dark:from-accent-900/30 dark:to-accent-800/30 border border-accent-200 dark:border-accent-700 shadow-sm">
-                            <div className={`flex-shrink-0 w-14 h-14 rounded-full ${getColorFromName(detailLoan.borrower?.name)} flex items-center justify-center text-white text-2xl font-bold`}>
-                              <User className="w-8 h-8" />
-                            </div>
-                            <div className="flex-1 grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
-                              <div>
-                                <div className="text-md font-semibold text-gray-900 dark:text-white">{detailLoan.borrower?.name}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">NIP: {detailLoan.borrower?.nip}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">Jabatan: {detailLoan.borrower?.officerId}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">No. HP: {detailLoan.borrower?.phone}</div>
-                              </div>
-                            </div>
-                          </div>
-                          {/* Loan Info Card */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="rounded-lg bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
-                              <div className="flex items-center gap-2 mb-2">
-                                <Clock className="w-5 h-5 text-accent-600 dark:text-accent-400" />
-                                <span className="font-semibold">Tanggal Pinjam</span>
-                              </div>
-                              <div className="text-sm text-gray-700 dark:text-gray-200 mb-2">{formatDateTime(detailLoan.borrowDate)}</div>
-                              <div className="flex items-center gap-2 mb-2">
-                                <Clock className="w-5 h-5 text-yellow-500" />
-                                <span className="font-semibold">Jatuh Tempo</span>
-                              </div>
-                              <div className="text-sm text-gray-700 dark:text-gray-200 mb-2">{formatDateTime(detailLoan.dueDate)}</div>
-                              {detailLoan.returnDate && (
-                                <>
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <CheckCircle className="w-5 h-5 text-green-600" />
-                                    <span className="font-semibold">Tanggal Kembali</span>
-                                  </div>
-                                  <div className="text-sm text-gray-700 dark:text-gray-200 mb-2">{formatDateTime(detailLoan.returnDate)}</div>
-                                </>
-                              )}
-                            </div>
-                            <div className="rounded-lg bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 p-4 shadow-sm flex flex-col gap-2">
-                              <div className="flex items-center gap-2">
-                                <span className="font-semibold">Status:</span>
-                                {getStatusBadge(detailLoan)}
-                              </div>
-                              <div><span className="font-semibold">Keperluan:</span> {detailLoan.purpose || "-"}</div>
-                              <div><span className="font-semibold">Catatan:</span> {detailLoan.notes || "-"}</div>
-                            </div>
-                          </div>
-                          {/* Items Card */}
-                          <div className="rounded-lg bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
-                            <div className="font-semibold mb-2">Daftar Barang ({detailLoan.itemDetails.length})</div>
-                            <ul className="divide-y divide-gray-100 dark:divide-gray-800 max-h-72 overflow-y-auto">
-                              {(detailLoan.itemDetails as (Item & ItemSerial & { note?: string; quantity: number })[]).map((item, idx) => (
-                                <li key={item.id} className="flex items-center gap-3 py-2">
-                                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-900/30">
-                                    {(() => {
-                                      const Icon = ICON_OPTIONS.find(opt => opt.value === (item.icon || "laptop"))?.icon || Laptop;
-                                      return <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />;
-                                    })()}
-                                  </span>
-                                  <div className="flex-1">
-                                    <div className="font-medium text-gray-900 dark:text-white">{item.name}</div>
-                                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                                      {item.sn || item.rfidCode || '-'}
-                                      {item.note ? ` | Catatan: ${item.note}` : ""}
-                                    </div>
-                                  </div>
-                                  {item.status === 1 && (
-                                    <span className="ml-2 px-2 py-0.5 rounded text-xs bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Sudah dikembalikan</span>
-                                  )}
-                                  {item.status === 0 && item.loanId === detailLoan.id && (
-                                    <span className="ml-2 px-2 py-0.5 rounded text-xs bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Masih dipinjam</span>
-                                  )}
-                                  {item.status === 0 && item.loanId !== detailLoan.id && (
-                                    <span className="ml-2 px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400">Dipinjam orang lain</span>
-                                  )}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      ) : <div />}
+                    <AlertDialogDescription>
+                      Informasi lengkap transaksi peminjaman barang.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
+                  {detailLoan && (
+                    <div className="space-y-6">
+                      {/* Borrower Card */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-accent-100 to-accent-200 dark:from-accent-900/30 dark:to-accent-800/30 border border-accent-200 dark:border-accent-700 shadow-sm">
+                        <div className={`flex-shrink-0 w-14 h-14 rounded-full ${getColorFromName(detailLoan.borrower?.name)} flex items-center justify-center text-white text-2xl font-bold`}>
+                          <User className="w-8 h-8" />
+                        </div>
+                        <div className="flex-1 grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+                          <div>
+                            <div className="text-md font-semibold text-gray-900 dark:text-white">{detailLoan.borrower?.name}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">NIP: {detailLoan.borrower?.nip}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">Jabatan: {detailLoan.borrower?.officerId}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">No. HP: {detailLoan.borrower?.phone}</div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Loan Info Card */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="rounded-lg bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Clock className="w-5 h-5 text-accent-600 dark:text-accent-400" />
+                            <span className="font-semibold">Tanggal Pinjam</span>
+                          </div>
+                          <div className="text-sm text-gray-700 dark:text-gray-200 mb-2">{formatDateTime(detailLoan.borrowDate)}</div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <Clock className="w-5 h-5 text-yellow-500" />
+                            <span className="font-semibold">Jatuh Tempo</span>
+                          </div>
+                          <div className="text-sm text-gray-700 dark:text-gray-200 mb-2">{formatDateTime(detailLoan.dueDate)}</div>
+                          {detailLoan.returnDate && (
+                            <>
+                              <div className="flex items-center gap-2 mb-2">
+                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                <span className="font-semibold">Tanggal Kembali</span>
+                              </div>
+                              <div className="text-sm text-gray-700 dark:text-gray-200 mb-2">{formatDateTime(detailLoan.returnDate)}</div>
+                            </>
+                          )}
+                        </div>
+                        <div className="rounded-lg bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 p-4 shadow-sm flex flex-col gap-2">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold">Status:</span>
+                            {getStatusBadge(detailLoan)}
+                          </div>
+                          <div><span className="font-semibold">Keperluan:</span> {detailLoan.purpose || "-"}</div>
+                          <div><span className="font-semibold">Catatan:</span> {detailLoan.notes || "-"}</div>
+                        </div>
+                      </div>
+                      {/* Items Card */}
+                      <div className="rounded-lg bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+                        <div className="font-semibold mb-2">Daftar Barang ({detailLoan.itemDetails.length})</div>
+                        <ul className="divide-y divide-gray-100 dark:divide-gray-800 max-h-72 overflow-y-auto">
+                          {(detailLoan.itemDetails as (Item & ItemSerial & { note?: string; quantity: number })[]).map((item, idx) => (
+                            <li key={item.id} className="flex items-center gap-3 py-2">
+                              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-accent-100 dark:bg-accent-900/30">
+                                {(() => {
+                                  const Icon = ICON_OPTIONS.find(opt => opt.value === (item.icon || "laptop"))?.icon || Laptop;
+                                  return <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />;
+                                })()}
+                              </span>
+                              <div className="flex-1">
+                                <div className="font-medium text-gray-900 dark:text-white">{item.name}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400">
+                                  {item.sn || item.rfidCode || '-'}
+                                  {item.note ? ` | Catatan: ${item.note}` : ""}
+                                </div>
+                              </div>
+                              {item.status === 1 && (
+                                <span className="ml-2 px-2 py-0.5 rounded text-xs bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">Sudah dikembalikan</span>
+                              )}
+                              {item.status === 0 && item.loanId === detailLoan.id && (
+                                <span className="ml-2 px-2 py-0.5 rounded text-xs bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">Masih dipinjam</span>
+                              )}
+                              {item.status === 0 && item.loanId !== detailLoan.id && (
+                                <span className="ml-2 px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400">Dipinjam orang lain</span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                   <AlertDialogFooter>
                     <Button
                       variant="outline"
@@ -783,7 +788,11 @@ export default function PengembalianPage() {
                       <Button
                         variant="outline"
                         className="rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 transition-colors shadow-sm"
-                        onClick={() => setIsReminderOpen(true)}
+                        onClick={() => {
+                          setReminderLoan(detailLoan);
+                          setIsDetailOpen(false);
+                          setIsReminderOpen(true);
+                        }}
                       >
                         Ingatkan
                       </Button>
@@ -802,18 +811,24 @@ export default function PengembalianPage() {
               </AlertDialog>
 
               {/* Reminder Confirmation Dialog */}
-              <AlertDialog open={isReminderOpen} onOpenChange={open => setIsReminderOpen(open)}>
+              <AlertDialog open={isReminderOpen} onOpenChange={open => {
+                setIsReminderOpen(open)
+                if (!open) setReminderLoan(null)
+              }}>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>Konfirmasi Pengingat</AlertDialogTitle>
                     <AlertDialogDescription>
-                      Kirim pengingat pengembalian barang ke <span className="font-semibold">{detailLoan?.borrower?.name}</span>?
+                      Kirim pengingat pengembalian barang ke <span className="font-semibold">{(reminderLoan || detailLoan)?.borrower?.name}</span>?
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
                     <AlertDialogCancel
                       className="rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 transition-colors"
-                      onClick={() => setIsReminderOpen(false)}
+                      onClick={() => {
+                        setIsReminderOpen(false)
+                        setReminderLoan(null)
+                      }}
                     >
                       Batal
                     </AlertDialogCancel>
