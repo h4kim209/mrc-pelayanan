@@ -1070,6 +1070,12 @@ app.post("/pinjam", async (req, res) => {
       return res.status(400).json({ error: "Data tidak lengkap" });
     }
 
+    if (!sockGlobal || waState.status !== "connected") {
+      return res.status(503).json({
+        error: "Bot WhatsApp belum terhubung ke nomor WA. Silakan buka menu WhatsApp di dashboard untuk scan QR."
+      });
+    }
+
     function formatStart(tgl) {
       try {
         const d = new Date(tgl);
