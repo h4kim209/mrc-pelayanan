@@ -311,6 +311,17 @@ const waState = {
 };
 const MAX_RECENT_MESSAGES = 200;
 
+function formatToWhatsAppJid(phone) {
+  if (!phone) return null;
+  let clean = String(phone).replace(/@s\.whatsapp\.net/g, "").replace(/\D/g, "");
+  if (clean.startsWith("0")) {
+    clean = "62" + clean.slice(1);
+  } else if (clean.startsWith("8")) {
+    clean = "62" + clean;
+  }
+  return clean ? `${clean}@s.whatsapp.net` : null;
+}
+
 // ===== start bot =====
 async function startBot() {
   if (isStartingBot) {
@@ -1088,9 +1099,10 @@ app.post("/pinjam", async (req, res) => {
     const pinjamId =
       id || `PMJ-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-    const jid = number.includes("@s.whatsapp.net")
-      ? number
-      : number.replace(/\D/g, "") + "@s.whatsapp.net";
+    const jid = formatToWhatsAppJid(number);
+    if (!jid) {
+      return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
+    }
 
     const itemsText = items
       .map((it, idx) => `${idx + 1}. ${it.item_name} (${it.qty}x)`)
@@ -1130,14 +1142,15 @@ app.post("/pinjam", async (req, res) => {
     conversationHistory[jid] = [system, ...rest];
     saveHistory(conversationHistory);
 
-    if (sockGlobal) {
+    if (sockGlobal && waState.status === "connected") {
       try {
         await sockGlobal.sendMessage(jid, { text: message });
+        console.log(`[WA] ✅ Berhasil kirim pesan peminjaman ke ${jid}`);
       } catch (e) {
-        console.error("Gagal kirim WA message (/pinjam):", e.message || e);
+        console.error(`[WA] ❌ Gagal kirim WA message (/pinjam) ke ${jid}:`, e.message || e);
       }
     } else {
-      console.warn("⚠️ sockGlobal belum terhubung, pesan WA tidak terkirim.");
+      console.warn(`[WA] ⚠️ Bot WhatsApp belum terhubung (status: ${waState.status}), pesan ke ${jid} tidak terkirim.`);
     }
 
 
@@ -1175,9 +1188,10 @@ app.post("/kembali", async (req, res) => {
     pinjamanDB[idx].status = "dikembalikan";
     pinjamanDB[idx].returned_at = new Date().toISOString();
     const { number, name, items, start_date, purpose, notes } = pinjamanDB[idx];
-    const jid = number.includes("@s.whatsapp.net")
-      ? number
-      : number.replace(/\D/g, "") + "@s.whatsapp.net";
+    const jid = formatToWhatsAppJid(number);
+    if (!jid) {
+      return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
+    }
     const itemsText = items
       .map((it, idx) => `${idx + 1}. ${it.item_name} (${it.qty}x)`)
       .join("\n");
@@ -1220,8 +1234,9 @@ app.post("/kembali", async (req, res) => {
       .replace(/{duration}/g, durasiStr || "");
 
     try {
-      if (sockGlobal) {
+      if (sockGlobal && waState.status === "connected") {
         await sockGlobal.sendMessage(jid, { text: message });
+        console.log(`[WA] ✅ Berhasil kirim konfirmasi pengembalian ke ${jid}`);
         ensureUserHistoryKey(jid);
         conversationHistory[jid].push({ role: "assistant", content: message });
         const system = conversationHistory[jid][0];
@@ -1229,10 +1244,10 @@ app.post("/kembali", async (req, res) => {
         conversationHistory[jid] = [system, ...rest];
         saveHistory(conversationHistory);
       } else {
-        console.warn("⚠️ sockGlobal belum terhubung, pesan pengembalian WA tidak terkirim.");
+        console.warn(`[WA] ⚠️ Bot WhatsApp belum terhubung (status: ${waState.status}), pesan pengembalian ke ${jid} tidak terkirim.`);
       }
     } catch (e) {
-      console.error("Gagal kirim konfirmasi pengembalian:", e.message || e);
+      console.error(`[WA] ❌ Gagal kirim konfirmasi pengembalian ke ${jid}:`, e.message || e);
     }
     savePinjaman(pinjamanDB);
     res.json({ status: "Barang telah ditandai sebagai dikembalikan", id });
@@ -1261,9 +1276,10 @@ app.post("/pengingat", async (req, res) => {
       return res.status(400).json({ error: "Barang sudah dikembalikan sebelumnya" });
     }
     const { number, name, items, start_date, due_date, purpose, notes } = pinjaman;
-    const jid = number.includes("@s.whatsapp.net")
-      ? number
-      : number.replace(/\D/g, "") + "@s.whatsapp.net";
+    const jid = formatToWhatsAppJid(number);
+    if (!jid) {
+      return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
+    }
     const itemsText = items
       .map((it, idx) => `${idx + 1}. ${it.item_name} (${it.qty}x)`)
       .join("\n");
@@ -1303,8 +1319,9 @@ app.post("/pengingat", async (req, res) => {
       .replace(/{purpose}/g, purpose || "-")
       .replace(/{notes}/g, notesText || "");
     try {
-      if (sockGlobal) {
+      if (sockGlobal && waState.status === "connected") {
         await sockGlobal.sendMessage(jid, { text: reminderMsg });
+        console.log(`[WA] ✅ Berhasil kirim pengingat ke ${jid}`);
         ensureUserHistoryKey(jid);
         conversationHistory[jid].push({ role: "assistant", content: reminderMsg });
         const system = conversationHistory[jid][0];
@@ -1312,7 +1329,7 @@ app.post("/pengingat", async (req, res) => {
         conversationHistory[jid] = [system, ...rest];
         saveHistory(conversationHistory);
       } else {
-        console.warn("⚠️ sockGlobal belum terhubung, pesan pengingat WA tidak terkirim.");
+        console.warn(`[WA] ⚠️ Bot WhatsApp belum terhubung (status: ${waState.status}), pesan pengingat ke ${jid} tidak terkirim.`);
       }
       res.json({ status: "Pengingat berhasil dikirim", id });
       console.log(
@@ -1475,9 +1492,10 @@ app.post("/wa/send", async (req, res) => {
     if (!sockGlobal) {
       return res.status(503).json({ error: "WhatsApp belum terhubung" });
     }
-    const targetJid = jid.includes("@s.whatsapp.net")
-      ? jid
-      : jid.replace(/\D/g, "") + "@s.whatsapp.net";
+    const targetJid = formatToWhatsAppJid(jid);
+    if (!targetJid) {
+      return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
+    }
 
     await sockGlobal.sendMessage(targetJid, { text });
 
