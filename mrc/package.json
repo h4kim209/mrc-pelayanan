@@ -61,6 +61,8 @@
     "shadcn": "latest",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
+    "tailwindcss": "3.4.17",
+    "postcss": "^8.4.38",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
     "xlsx": "^0.18.5",
@@ -73,8 +75,6 @@
     "@types/react-dom": "^19",
     "mini-css-extract-plugin": "^2.9.2",
     "minimatch": "^10.2.5",
-    "postcss": "^8.5",
-    "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
 }
