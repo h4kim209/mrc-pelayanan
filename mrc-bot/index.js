@@ -1192,7 +1192,7 @@ app.post("/pinjam", async (req, res) => {
 
 app.post("/kembali", async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id, photo } = req.body;
     if (!id) {
       return res.status(400).json({ error: "ID peminjaman wajib diisi" });
     }
@@ -1207,6 +1207,7 @@ app.post("/kembali", async (req, res) => {
     }
     pinjamanDB[idx].status = "dikembalikan";
     pinjamanDB[idx].returned_at = new Date().toISOString();
+    if (photo) pinjamanDB[idx].return_photo = photo;
     const { number, name, items, start_date, purpose, notes } = pinjamanDB[idx];
     const jid = number.includes("@s.whatsapp.net")
       ? number
@@ -1254,7 +1255,25 @@ app.post("/kembali", async (req, res) => {
 
     try {
       if (sockGlobal) {
-        await sockGlobal.sendMessage(jid, { text: message });
+        const imageBuf = await getImageBuffer(photo);
+        if (imageBuf) {
+          if (message.length <= 1000) {
+            await sockGlobal.sendMessage(jid, {
+              image: imageBuf,
+              caption: message,
+            });
+          } else {
+            await sockGlobal.sendMessage(jid, {
+              image: imageBuf,
+              caption: "📸 *Foto Bukti Pengembalian Barang - MRC SMKN 1 Subang*",
+            });
+            await sockGlobal.sendMessage(jid, { text: message });
+          }
+          console.log(`[WA] ✅ Foto bukti dan pesan pengembalian terkirim ke ${number}`);
+        } else {
+          await sockGlobal.sendMessage(jid, { text: message });
+          console.log(`[WA] ✅ Pesan teks pengembalian terkirim ke ${number}`);
+        }
         ensureUserHistoryKey(jid);
         conversationHistory[jid].push({ role: "assistant", content: message });
         const system = conversationHistory[jid][0];
@@ -1266,6 +1285,11 @@ app.post("/kembali", async (req, res) => {
       }
     } catch (e) {
       console.error("Gagal kirim konfirmasi pengembalian:", e.message || e);
+      try {
+        await sockGlobal.sendMessage(jid, { text: message });
+      } catch (errFallback) {
+        // ignore
+      }
     }
     savePinjaman(pinjamanDB);
     res.json({ status: "Barang telah ditandai sebagai dikembalikan", id });
