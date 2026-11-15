@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Lenovo G40",
+    "category": "Elektronik",
+    "stock": 20,
+    "condition": "Baik",
+    "description": "",
+    "icon": "laptop",
+    "id": "1754637098494",
+    "createdAt": "2025-08-08T07:11:38.494Z",
+    "updatedAt": "2025-08-11T08:33:26.429Z"
+  },
+  {
+    "name": "Proyektor",
+    "category": "Elektronik ",
+    "stock": 12,
+    "condition": "Baik",
+    "description": "LCD PROYEKTOR EB-X51\nSet (KABEL HDMI, VGA & POWER)",
+    "icon": "projector",
+    "id": "1754696680732",
+    "createdAt": "2025-08-08T23:44:40.732Z",
+    "updatedAt": "2025-08-11T08:33:26.489Z"
+  },
+  {
+    "name": "Kabel HDMI 5 Meter",
+    "category": "Elektronik ",
+    "stock": 14,
+    "condition": "Baik",
+    "description": "",
+    "icon": "hdmi",
+    "id": "1754696777625",
+    "createdAt": "2025-08-08T23:46:17.625Z",
+    "updatedAt": "2025-08-11T07:06:10.728Z"
+  },
+  {
+    "name": "Terminal 5 Meter",
+    "category": "Elektronik",
+    "stock": 11,
+    "condition": "Baik",
+    "description": "",
+    "icon": "plug",
+    "id": "1754873198845",
+    "createdAt": "2025-08-11T00:46:38.846Z",
+    "updatedAt": "2025-08-11T08:33:27.499Z"
+  },
+  {
+    "name": "Speaker Bluetooth",
+    "category": "Elektronik",
+    "stock": 5,
+    "condition": "Baik",
+    "description": "Nemesis Odette X70",
+    "icon": "speaker",
+    "id": "1754890073251",
+    "createdAt": "2025-08-11T05:27:53.251Z",
+    "updatedAt": "2025-08-11T08:13:44.361Z"
+  }
+]

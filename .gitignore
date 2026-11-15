@@ -1,0 +1,47 @@
+# Node modules
+node_modules/
+*/node_modules/
+
+# Next.js build output
+.next/
+*/.next/
+out/
+*/out/
+build/
+*/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+mrc/.env
+mrc/.env.local
+mrc-bot/.env
+
+# Large archives & temp backups
+*.rar
+*.zip
+*.tar.gz
+*.7z
+mrc-deployment/
+
+# Root documents & binaries
+/*.xlsx
+/*.docx
+/*.pdf
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+.vscode/
+*/.vscode/

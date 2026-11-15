@@ -1,0 +1,16 @@
+{
+  "name": "aplikasi-pelayanan-mrc",
+  "version": "1.0.0",
+  "description": "Sistem Informasi Pelayanan MRC SMKN 1 Subang",
+  "scripts": {
+    "install:all": "npm --prefix mrc install --omit=dev && npm --prefix mrc-bot install --omit=dev",
+    "build": "npm --prefix mrc run build",
+    "start": "pm2 start ecosystem.config.js",
+    "restart": "pm2 restart ecosystem.config.js",
+    "stop": "pm2 stop ecosystem.config.js",
+    "logs": "pm2 logs"
+  },
+  "dependencies": {
+    "mysql2": "^3.24.6"
+  }
+}

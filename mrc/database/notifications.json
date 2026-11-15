@@ -1,0 +1,2761 @@
+[
+  {
+    "id": 1794542412975,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": false,
+    "timestamp": "2026-11-13T04:00:12.975Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1794528012782,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": false,
+    "timestamp": "2026-11-13T00:00:12.782Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1794470411943,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-12T08:00:11.943Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1794456011548,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-11-12T04:00:11.549Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1794441611440,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-12T00:00:11.440Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1794384010526,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-11T08:00:10.526Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1794355210067,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-11T00:00:10.067Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1794297609292,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-10T08:00:09.292Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1794283209043,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-11-10T04:00:09.043Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1794268808883,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-10T00:00:08.883Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1794211208005,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-09T08:00:08.005Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1794182407557,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-09T00:00:07.557Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793952004071,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-06T08:00:04.071Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793937603851,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-11-06T04:00:03.851Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1793923203576,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-06T00:00:03.576Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793865602650,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-05T08:00:02.650Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793836802274,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-05T00:00:02.274Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793779201502,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-04T08:00:01.502Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793750401048,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-04T00:00:01.048Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793692800115,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-11-03T08:00:00.115Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793332808639,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-30T04:00:08.639Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1793318408478,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-30T00:00:08.478Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793260807527,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-29T08:00:07.527Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793232007005,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-29T00:00:07.005Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793174406260,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-28T08:00:06.260Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793145605754,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-28T00:00:05.754Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793088004771,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-27T08:00:04.771Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1793059204256,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-27T00:00:04.256Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1793001603213,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-26T08:00:03.213Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792972802849,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-26T00:00:02.849Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792742431309,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-23T08:00:31.309Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792728031105,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-23T04:00:31.105Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1792713630913,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-23T00:00:30.913Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792656030064,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-22T08:00:30.064Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792627229625,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-22T00:00:29.625Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792569628737,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-21T08:00:28.737Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792540828303,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-21T00:00:28.303Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792483227491,
+    "message": "Ada 24 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-20T08:00:27.491Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792468827260,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-20T04:00:27.260Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1792454427083,
+    "message": "Ada 24 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-20T00:00:27.083Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792396826234,
+    "message": "Ada 24 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-19T08:00:26.234Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792368025804,
+    "message": "Ada 24 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-19T00:00:25.804Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792137622409,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-16T08:00:22.409Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792123222201,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-16T04:00:22.201Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1792108821969,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-16T00:00:21.969Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1792051221093,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-15T08:00:21.093Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1792036820944,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-15T04:00:20.944Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1792022420731,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-15T00:00:20.731Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791964819903,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-14T08:00:19.903Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791950419636,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-14T04:00:19.636Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1791936019487,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-14T00:00:19.487Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791878418600,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-13T08:00:18.600Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791849618140,
+    "message": "Ada 20 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-13T00:00:18.140Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791792017303,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-12T08:00:17.303Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791777617158,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-12T04:00:17.158Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1791763216922,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-12T00:00:16.922Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791532813488,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-09T08:00:13.488Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791504013082,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-09T00:00:13.082Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791446411976,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-08T08:00:11.976Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791432011873,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-08T04:00:11.873Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1791417611761,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-08T00:00:11.761Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791360010834,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-07T08:00:10.834Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791331210388,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-07T00:00:10.388Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791273609636,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-06T08:00:09.636Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791244809193,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-06T00:00:09.193Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1791187207952,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-05T08:00:07.953Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1791172807881,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-10-05T04:00:07.881Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1791158407811,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-05T00:00:07.811Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790928004389,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-02T08:00:04.389Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790899203904,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-02T00:00:03.904Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790841603071,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-01T08:00:03.071Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790812802732,
+    "message": "Ada 19 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-10-01T00:00:02.732Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790755201897,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-30T08:00:01.897Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790740801505,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-30T04:00:01.505Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1790726401446,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-30T00:00:01.446Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790668800516,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-29T08:00:00.516Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790323214965,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-25T08:00:14.965Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790308814556,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-25T04:00:14.556Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1790294414444,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-25T00:00:14.444Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790236813388,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-24T08:00:13.388Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790208012868,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-24T00:00:12.868Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790150411984,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-23T08:00:11.984Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790136011696,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-23T04:00:11.696Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1790121611525,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-23T00:00:11.525Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1790064010498,
+    "message": "Ada 17 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-22T08:00:10.498Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1790035209974,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-22T00:00:09.974Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789977608896,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-21T08:00:08.896Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789963208790,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-21T04:00:08.790Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1789948808338,
+    "message": "Ada 18 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-21T00:00:08.338Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789718404538,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-18T08:00:04.538Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789689604124,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-18T00:00:04.124Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789632003248,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-17T08:00:03.248Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789603202754,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-17T00:00:02.754Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789545601718,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-16T08:00:01.718Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789531201683,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-16T04:00:01.683Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1789516801167,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-16T00:00:01.167Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789459200136,
+    "message": "Ada 15 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-15T08:00:00.136Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789444800045,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-15T04:00:00.045Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1789372821604,
+    "message": "Ada 15 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-14T08:00:21.604Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789344021207,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-14T00:00:21.207Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789113617797,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-11T08:00:17.797Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789099217526,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-11T04:00:17.526Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1789084817380,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-11T00:00:17.380Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1789027216507,
+    "message": "Ada 10 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-10T08:00:16.507Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1789012816320,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-10T04:00:16.320Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1788998416047,
+    "message": "Ada 10 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-10T00:00:16.047Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788940815138,
+    "message": "Ada 9 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-09T08:00:15.138Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788926415033,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-09T04:00:15.033Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1788912014815,
+    "message": "Ada 9 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-09T00:00:14.815Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788854414013,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-08T08:00:14.013Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788850675568,
+    "message": "Booking baru: Taufik Dzikri Pangestu, S.Pd. - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-08T06:57:55.568Z"
+  },
+  {
+    "id": 1788840013683,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-08T04:00:13.683Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1788835841205,
+    "message": "Booking baru: Enzo  - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-08T02:50:41.205Z"
+  },
+  {
+    "id": 1788825613572,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-08T00:00:13.572Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788768012669,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-07T08:00:12.669Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788752047564,
+    "message": "Booking baru: Taufik Dzikri Pangestu, S.Pd. - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-07T03:34:07.564Z"
+  },
+  {
+    "id": 1788748708812,
+    "message": "Booking baru: Taufik Dzikri Pangestu, S.Pd. - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-07T02:38:28.812Z"
+  },
+  {
+    "id": 1788748517326,
+    "message": "Booking baru: Taufik Dzikri Pangestu, S.Pd. - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-07T02:35:17.326Z"
+  },
+  {
+    "id": 1788748322292,
+    "message": "Booking baru: Taufik Dzikri Pangestu, S.Pd. - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-07T02:32:02.292Z"
+  },
+  {
+    "id": 1788739212205,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-07T00:00:12.205Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788508808779,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-04T08:00:08.779Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788480008339,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-04T00:00:08.339Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788422407632,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-03T08:00:07.632Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788408007359,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-03T04:00:07.359Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1788393607236,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-03T00:00:07.236Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788336006354,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-02T08:00:06.354Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788321606127,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-09-02T04:00:06.127Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1788315129304,
+    "message": "Booking baru: Taufik Dzikri Pangestu, S.Pd. - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-09-02T02:12:09.304Z"
+  },
+  {
+    "id": 1788307205917,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-02T00:00:05.917Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788249604987,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-01T08:00:04.987Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788220804569,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-09-01T00:00:04.569Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1788163203870,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-31T08:00:03.870Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1788137699629,
+    "message": "Booking baru: Ahmad Hakim Makarim - 2 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-08-31T00:54:59.629Z"
+  },
+  {
+    "id": 1788134403453,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-31T00:00:03.453Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787904000042,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-28T08:00:00.042Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787875202755,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-28T00:00:02.755Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787817605477,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-27T08:00:05.477Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787788805253,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-27T00:00:05.253Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787731204827,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-26T08:00:04.827Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787702404159,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-26T00:00:04.159Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787644803199,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-25T08:00:03.199Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787616002713,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-25T00:00:02.713Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787558402014,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-24T08:00:02.014Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787544001518,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-08-24T04:00:01.518Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1787529601162,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-24T00:00:01.162Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787299200050,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-21T08:00:00.050Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787270419104,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-21T00:00:19.104Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787212818173,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-20T08:00:18.173Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787184017736,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-20T00:00:17.736Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787126416920,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-19T08:00:16.920Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787097616461,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-19T00:00:16.461Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1787040015701,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-18T08:00:15.701Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1787011215259,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-18T00:00:15.259Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786953614336,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-17T08:00:14.336Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786924813844,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-17T00:00:13.844Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786694410370,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-14T08:00:10.370Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786665609950,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-14T00:00:09.951Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786608009223,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-13T08:00:09.223Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786579208810,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-13T00:00:08.810Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786521607911,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-12T08:00:07.911Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786507207769,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-08-12T04:00:07.769Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1786492807448,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-12T00:00:07.448Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786435206526,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-11T08:00:06.526Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786420806443,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-08-11T04:00:06.443Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1786406406226,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-11T00:00:06.226Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786348805433,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-10T08:00:05.433Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786320004977,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-10T00:00:04.977Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786089601480,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-07T08:00:01.480Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1786060801010,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-07T00:00:01.010Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1786003200068,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-06T08:00:00.068Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785974400862,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-06T00:00:00.862Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1785916800328,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-05T08:00:00.328Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785830400582,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-04T08:00:00.582Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785744016313,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-03T08:00:16.313Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785729616116,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-08-03T04:00:16.116Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1785715215864,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-08-03T00:00:15.864Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1785484811904,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-31T08:00:11.904Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785456011378,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-31T00:00:11.378Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1785398410538,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-30T08:00:10.538Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785369610052,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-30T00:00:10.052Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1785312009053,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-29T08:00:09.053Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785297608710,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-07-29T04:00:08.710Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1785283208570,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-29T00:00:08.570Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1785225607585,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-28T08:00:07.585Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785196807060,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-28T00:00:07.060Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1785139206587,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-27T08:00:06.587Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1785124806119,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-07-27T04:00:06.119Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1785110405542,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-27T00:00:05.542Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1784880001537,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-24T08:00:01.537Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1784865601151,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-07-24T04:00:01.151Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1784851201056,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-24T00:00:01.056Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1784793602303,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-23T08:00:02.304Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1784764801763,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-23T00:00:01.763Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1784707200733,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-22T08:00:00.733Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1784692800669,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-07-22T04:00:00.669Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1784678400592,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-07-22T00:00:00.592Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1784637159373,
+    "message": "Booking baru: Ahmad Hakim Makarim - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-07-21T12:32:39.374Z"
+  },
+  {
+    "id": 1776758400359,
+    "message": "Ada 26 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-21T08:00:00.359Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776744000376,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-21T04:00:00.376Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1776729600288,
+    "message": "Ada 30 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-21T00:00:00.288Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1776672000125,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-20T08:00:00.125Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776657600085,
+    "message": "Ada 6 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-20T04:00:00.085Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1776412802387,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-17T08:00:02.387Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776398402424,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-17T04:00:02.424Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1776384002364,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-17T00:00:02.364Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1776326402128,
+    "message": "Ada 27 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-16T08:00:02.128Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776312002146,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-16T04:00:02.146Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1776297602054,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-16T00:00:02.054Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1776240001933,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-15T08:00:01.933Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776211201797,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-15T00:00:01.797Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1776153601623,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-14T08:00:01.623Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776139201633,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-14T04:00:01.633Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1776124801541,
+    "message": "Ada 29 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-14T00:00:01.541Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1776067201362,
+    "message": "Ada 28 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-13T08:00:01.362Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1776052801320,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-13T04:00:01.320Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1776038401279,
+    "message": "Ada 28 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-13T00:00:01.279Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1775808000575,
+    "message": "Ada 27 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-10T08:00:00.575Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1775793600534,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-10T04:00:00.534Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1775779200496,
+    "message": "Ada 28 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-10T00:00:00.496Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1775721600323,
+    "message": "Ada 26 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-09T08:00:00.323Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1775707200297,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-04-09T04:00:00.297Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1775692800257,
+    "message": "Ada 28 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-09T00:00:00.257Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1775635200081,
+    "message": "Ada 27 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-04-08T08:00:00.081Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1774944000191,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-31T08:00:00.191Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1774929600147,
+    "message": "Ada 9 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-03-31T04:00:00.147Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1774915200128,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-31T00:00:00.128Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1774598400504,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-27T08:00:00.504Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1774569600449,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-27T00:00:00.449Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1774512000283,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-26T08:00:00.283Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1774483200207,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-26T00:00:00.207Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1774425600085,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-25T08:00:00.085Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773993600397,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-20T08:00:00.397Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773964800340,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-20T00:00:00.340Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773907200259,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-19T08:00:00.259Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773878400148,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-19T00:00:00.148Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773820800097,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-18T08:00:00.097Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773648001102,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-16T08:00:01.102Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773619200980,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-16T00:00:00.980Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773388800468,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-13T08:00:00.468Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773374400452,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-03-13T04:00:00.452Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1773360000360,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-13T00:00:00.360Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773302400268,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-12T08:00:00.268Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773288000234,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-03-12T04:00:00.234Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1773273600146,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-12T00:00:00.146Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773216000034,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-11T08:00:00.034Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773187201087,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-11T00:00:01.087Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773129601006,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-10T08:00:01.006Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773115201100,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-03-10T04:00:01.100Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1773100800897,
+    "message": "Ada 22 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-10T00:00:00.897Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1773043200763,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-09T08:00:00.763Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1773028800758,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-03-09T04:00:00.758Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1773014400657,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-09T00:00:00.657Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1772784000081,
+    "message": "Ada 21 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-03-06T08:00:00.081Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1772179200239,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-27T08:00:00.239Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1772164800201,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-02-27T04:00:00.201Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1772150400240,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-27T00:00:00.240Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1772092800061,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-26T08:00:00.061Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1772078400060,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-02-26T04:00:00.060Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1771977600426,
+    "message": "Ada 14 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-25T00:00:00.426Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1771920000282,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-24T08:00:00.282Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1771905600249,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-02-24T04:00:00.249Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1771891200211,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-24T00:00:00.211Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1771833600092,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-23T08:00:00.092Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1771819200066,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-02-23T04:00:00.066Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1771574400489,
+    "message": "Ada 11 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-20T08:00:00.489Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1771560000450,
+    "message": "Ada 1 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-02-20T04:00:00.450Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1771545600419,
+    "message": "Ada 11 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-20T00:00:00.419Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1771488000285,
+    "message": "Ada 11 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-19T08:00:00.285Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1771459200214,
+    "message": "Ada 11 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-19T00:00:00.214Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1771401600088,
+    "message": "Ada 11 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-02-18T08:00:00.088Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1769587200435,
+    "message": "Ada 4 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-28T08:00:00.435Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1769558400387,
+    "message": "Ada 4 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-28T00:00:00.387Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1769500800283,
+    "message": "Ada 4 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-27T08:00:00.283Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1769486400261,
+    "message": "Ada 8 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-01-27T04:00:00.261Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1769472000276,
+    "message": "Ada 4 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-27T00:00:00.276Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1769414400092,
+    "message": "Ada 4 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-26T08:00:00.092Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1769400000071,
+    "message": "Ada 5 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-01-26T04:00:00.071Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1769126400214,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-23T00:00:00.214Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1769068800108,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-22T08:00:00.108Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1769054400093,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-01-22T04:00:00.093Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1768982400124,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-21T08:00:00.124Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1768968000094,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2026-01-21T04:00:00.094Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1767830400275,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-08T00:00:00.275Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1767772800159,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-07T08:00:00.159Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1767744000102,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-07T00:00:00.102Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1767686400074,
+    "message": "Ada 16 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2026-01-06T08:00:00.074Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1767674844747,
+    "message": "Booking baru: Abdi Putrana Radian - 1 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2026-01-06T04:47:24.747Z"
+  },
+  {
+    "id": 1766995200230,
+    "message": "Ada 13 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-29T08:00:00.230Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1766966400169,
+    "message": "Ada 15 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-29T00:00:00.169Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1766131200231,
+    "message": "Ada 11 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-19T08:00:00.231Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1766102400244,
+    "message": "Ada 12 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-19T00:00:00.244Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1765694158934,
+    "message": "Booking baru: Ahmad Hakim Makarim - 3 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2025-12-14T06:35:58.934Z"
+  },
+  {
+    "id": 1765353600367,
+    "message": "Ada 10 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-10T08:00:00.367Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1765339200310,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-12-10T04:00:00.310Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1765324800268,
+    "message": "Ada 10 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-10T00:00:00.268Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1765267200199,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-09T08:00:00.199Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1765252800148,
+    "message": "Ada 5 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-12-09T04:00:00.148Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1765238400127,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-12-09T00:00:00.127Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1764810252578,
+    "message": "Booking baru: Asep Dani Noviandi, S.An. - 2 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2025-12-04T01:04:12.578Z"
+  },
+  {
+    "id": 1764562923878,
+    "message": "Booking baru: Rika Tri Mulyawati, S.Pd. - 3 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2025-12-01T04:22:03.878Z"
+  },
+  {
+    "id": 1764545576242,
+    "message": "Booking baru: Asep Dani Noviandi, S.An. - 2 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2025-11-30T23:32:56.242Z"
+  },
+  {
+    "id": 1764316800306,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-28T08:00:00.306Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1764302400227,
+    "message": "Ada 2 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-28T04:00:00.227Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1764292824257,
+    "message": "Booking baru: Dian Maelani, S.Pd. - 2 item",
+    "type": "booking",
+    "read": true,
+    "timestamp": "2025-11-28T01:20:24.257Z"
+  },
+  {
+    "id": 1764288000202,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-28T00:00:00.202Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1764230400104,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-27T08:00:00.104Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1764057600322,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-25T08:00:00.322Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1764028800236,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-25T00:00:00.236Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1763971200139,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-24T08:00:00.139Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763956800093,
+    "message": "Ada 12 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-24T04:00:00.093Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1763683200134,
+    "message": "Ada 8 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-21T00:00:00.134Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1763625600289,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-20T08:00:00.289Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763611200255,
+    "message": "Ada 5 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-20T04:00:00.255Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1763596800224,
+    "message": "Ada 7 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-20T00:00:00.224Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1763539200093,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-19T08:00:00.093Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763524800057,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-19T04:00:00.057Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1763452800249,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-18T08:00:00.249Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763438400219,
+    "message": "Ada 8 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-18T04:00:00.219Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1763424000189,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-18T00:00:00.189Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1763366400060,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-17T08:00:00.060Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763352000078,
+    "message": "Ada 11 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-17T04:00:00.078Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1763107200253,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-14T08:00:00.253Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763092800252,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-14T04:00:00.252Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1763078400207,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-14T00:00:00.207Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1763020800110,
+    "message": "Ada 5 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-13T08:00:00.110Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1763006400075,
+    "message": "Ada 5 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-13T04:00:00.075Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1762905600400,
+    "message": "Ada 4 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-12T00:00:00.400Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1762848000284,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-11T08:00:00.284Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1762833600251,
+    "message": "Ada 5 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-11-11T04:00:00.251Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1762819200212,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-11T00:00:00.212Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1762761600071,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-10T08:00:00.071Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1762416000278,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-06T08:00:00.278Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1762387200221,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-06T00:00:00.221Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1762329600112,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-05T08:00:00.112Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1762300800060,
+    "message": "Ada 3 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-05T00:00:00.060Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1762128000783,
+    "message": "Ada 2 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-11-03T00:00:00.783Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1761897600273,
+    "message": "Ada 2 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-10-31T08:00:00.273Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1761883200226,
+    "message": "Ada 3 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-10-31T04:00:00.226Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1761868800196,
+    "message": "Ada 2 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-10-31T00:00:00.196Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1761811200081,
+    "message": "Ada 1 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-10-30T08:00:00.081Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1761796800057,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-10-30T04:00:00.057Z",
+    "slot": "return-11"
+  },
+  {
+    "id": 1761724800077,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-10-29T08:00:00.077Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1761696000161,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-10-29T00:00:00.161Z",
+    "slot": "overdue-07"
+  },
+  {
+    "id": 1761638400066,
+    "message": "Ada 6 peminjaman yang sudah terlambat dikembalikan!",
+    "type": "overdue",
+    "read": true,
+    "timestamp": "2025-10-28T08:00:00.066Z",
+    "slot": "overdue-15"
+  },
+  {
+    "id": 1761624603138,
+    "message": "Ada 4 peminjaman yang jatuh tempo hari ini",
+    "type": "return",
+    "read": true,
+    "timestamp": "2025-10-28T04:10:03.138Z",
+    "slot": "return-11"
+  },
+  {
+    "message": "Check out another repository on GitHub @abdipr",
+    "type": "info",
+    "id": 1755068990421,
+    "read": true,
+    "timestamp": "2025-08-13T07:09:50.421Z"
+  },
+  {
+    "message": "Dashboard MRC by @abdipr",
+    "type": "info",
+    "id": 1755068990424,
+    "read": true,
+    "timestamp": "2025-08-13T07:09:50.424Z"
+  }
+]

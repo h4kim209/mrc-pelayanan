@@ -1,0 +1,28 @@
+{
+  "siteName": "Administrator",
+  "theme": "light",
+  "admin": {
+    "username": "admin",
+    "password": "nesas1965!"
+  },
+  "notifications": {
+    "overdueReminders": true,
+    "returnReminders": true
+  },
+  "system": {
+    "defaultLoanDays": 1,
+    "maxLoanItems": 20,
+    "returnConfirmation": true,
+    "borrowConfirmation": true
+  },
+  "messages": {
+    "aiReply": false,
+    "loanMessage": true,
+    "returnMessage": true,
+    "reminderMessage": true
+  },
+  "operator": {
+    "username": "operator",
+    "password": "operator123"
+  }
+}
