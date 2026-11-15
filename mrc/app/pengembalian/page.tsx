@@ -290,16 +290,28 @@ export default function PengembalianPage() {
       return serial && serial.loanId !== returningLoan.id ? true : (serial && serial.status === 1);
     });
     if (allSerialsReturned && settings?.messages?.returnMessage) {
-        try {
+      try {
+        const returnItems = (returningLoan.itemDetails || []).map((it: any) => ({
+          item_name: it.name || "Barang",
+          qty: 1
+        }));
         await fetch("/external/kembali", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ id: returningLoan.id })
-        })
+          body: JSON.stringify({
+            id: returningLoan.id,
+            number: returningLoan.borrower?.phone || "",
+            name: returningLoan.borrower?.name || "",
+            items: returnItems,
+            start_date: returningLoan.borrowDate,
+            purpose: returningLoan.purpose || "-",
+            notes: returningLoan.notes || ""
+          })
+        });
       } catch (err) {
-        console.error("Gagal POST ke API eksternal /kembali:", err)
+        console.error("Gagal POST ke API eksternal /kembali:", err);
       }
     }
     loadLoans();
@@ -319,20 +331,39 @@ export default function PengembalianPage() {
   const handleSendReminder = async () => {
     if (!detailLoan) return;
     try {
+      const itemsBody = (detailLoan.itemDetails || []).map((it: any) => ({
+        item_name: it.name || "Barang",
+        qty: 1
+      }));
       const res = await fetch("/external/pengingat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ id: detailLoan.id })
+        body: JSON.stringify({
+          id: detailLoan.id,
+          number: detailLoan.borrower?.phone || "",
+          name: detailLoan.borrower?.name || "",
+          start_date: detailLoan.borrowDate,
+          due_date: detailLoan.dueDate,
+          items: itemsBody,
+          purpose: detailLoan.purpose || "-",
+          notes: detailLoan.notes || ""
+        })
       });
+      const data = await res.json().catch(() => ({}));
       if (res.ok) {
+        toast.success("Pengingat berhasil dikirim ke WhatsApp " + (detailLoan.borrower?.name || "peminjam"));
         setSuccess("Pengingat berhasil dikirim ke " + (detailLoan.borrower?.name || "peminjam"));
       } else {
-        setError("Gagal mengirim pengingat");
+        const errorText = data.error || "Gagal mengirim pengingat ke WhatsApp";
+        toast.error(errorText);
+        setError(errorText);
       }
-    } catch (err) {
-      setError("Gagal mengirim pengingat");
+    } catch (err: any) {
+      const msg = err?.message || "Gagal menghubungi server pengingat";
+      toast.error(msg);
+      setError(msg);
     }
     setIsReminderOpen(false);
   }

@@ -1178,89 +1178,98 @@ app.post("/pinjam", async (req, res) => {
 
 app.post("/kembali", async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id, number, name, items, start_date, purpose, notes } = req.body;
     if (!id) {
       return res.status(400).json({ error: "ID peminjaman wajib diisi" });
     }
-    const idx = pinjamanDB.findIndex((p) => p.id === id);
-    if (idx === -1) {
-      return res.status(404).json({ error: "ID peminjaman tidak ditemukan" });
+
+    if (!sockGlobal || waState.status !== "connected") {
+      return res.status(503).json({
+        error: "Bot WhatsApp belum terhubung ke nomor WA. Silakan buka menu WhatsApp di dashboard dan scan QR terlebih dahulu."
+      });
     }
-    if (pinjamanDB[idx].status === "dikembalikan") {
-      return res
-        .status(400)
-        .json({ error: "Barang sudah dikembalikan sebelumnya" });
+
+    const idx = pinjamanDB.findIndex((p) => String(p.id) === String(id));
+    if (idx !== -1) {
+      pinjamanDB[idx].status = "dikembalikan";
+      pinjamanDB[idx].returned_at = new Date().toISOString();
+      savePinjaman(pinjamanDB);
     }
-    pinjamanDB[idx].status = "dikembalikan";
-    pinjamanDB[idx].returned_at = new Date().toISOString();
-    const { number, name, items, start_date, purpose, notes } = pinjamanDB[idx];
-    const jid = formatToWhatsAppJid(number);
+
+    const pinjaman = idx !== -1 ? pinjamanDB[idx] : null;
+    const targetNumber = number || pinjaman?.number;
+    const targetName = name || pinjaman?.name || "Peminjam";
+    const targetItems = (Array.isArray(items) && items.length > 0) ? items : (pinjaman?.items || []);
+    const targetStartDate = start_date || pinjaman?.start_date || new Date().toISOString();
+    const targetPurpose = purpose || pinjaman?.purpose || "-";
+    const targetNotes = notes !== undefined ? notes : (pinjaman?.notes || "");
+
+    if (!targetNumber) {
+      return res.status(400).json({ error: "Nomor WhatsApp peminjam tidak ditemukan" });
+    }
+
+    const jid = formatToWhatsAppJid(targetNumber);
     if (!jid) {
-      return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
+      return res.status(400).json({ error: `Nomor WhatsApp tidak valid: ${targetNumber}` });
     }
-    const itemsText = items
-      .map((it, idx) => `${idx + 1}. ${it.item_name} (${it.qty}x)`)
+
+    const itemsText = targetItems
+      .map((it, i) => `${i + 1}. ${it.item_name} (${it.qty}x)`)
       .join("\n");
+
     // Hitung durasi peminjaman
-    const startTime = new Date(pinjamanDB[idx].start_date).getTime();
-    const returnedTime = new Date(pinjamanDB[idx].returned_at).getTime();
+    const startTime = new Date(targetStartDate).getTime();
+    const returnedTime = Date.now();
     let durationMs = returnedTime - startTime;
     if (durationMs < 0) durationMs = 0;
     let m = Math.floor(durationMs / 1000 / 60) % 60;
     let h = Math.floor(durationMs / 1000 / 60 / 60) % 24;
     let d = Math.floor(durationMs / 1000 / 60 / 60 / 24);
-    let durasiStr;
-    if (d === 0) {
-      durasiStr = `${h} jam, ${m} menit`;
-    } else {
-      durasiStr = `${d} hari, ${h} jam, ${m} menit`;
-    }
+    let durasiStr = d === 0 ? `${h} jam, ${m} menit` : `${d} hari, ${h} jam, ${m} menit`;
 
     const startDateText = (() => {
       try {
-        const d = new Date(start_date);
-        const yyyy = d.getFullYear();
-        const mm = String(d.getMonth() + 1).padStart(2, "0");
-        const dd = String(d.getDate()).padStart(2, "0");
-        const hh = String(d.getHours()).padStart(2, "0");
-        const min = String(d.getMinutes()).padStart(2, "0");
+        const dt = new Date(targetStartDate);
+        const yyyy = dt.getFullYear();
+        const mm = String(dt.getMonth() + 1).padStart(2, "0");
+        const dd = String(dt.getDate()).padStart(2, "0");
+        const hh = String(dt.getHours()).padStart(2, "0");
+        const min = String(dt.getMinutes()).padStart(2, "0");
         return `${yyyy}-${mm}-${dd} pukul ${hh}:${min}`;
       } catch {
-        return start_date;
+        return targetStartDate;
       }
     })();
-    let notesText = notes && notes.trim() ? `📄 Catatan: *${notes}*\n` : "";
+
+    let notesText = targetNotes && targetNotes.trim() ? `📄 Catatan: *${targetNotes}*\n` : "";
     const rawTemplate = await getDynamicTemplate("return");
     const message = rawTemplate
-      .replace(/{name}/g, name || "")
-      .replace(/{items}/g, itemsText || "")
-      .replace(/{startDate}/g, startDateText || "")
-      .replace(/{purpose}/g, purpose || "-")
-      .replace(/{notes}/g, notesText || "")
-      .replace(/{duration}/g, durasiStr || "");
+      .replace(/{name}/g, targetName)
+      .replace(/{items}/g, itemsText || "-")
+      .replace(/{startDate}/g, startDateText)
+      .replace(/{purpose}/g, targetPurpose)
+      .replace(/{notes}/g, notesText)
+      .replace(/{duration}/g, durasiStr);
 
     try {
-      if (sockGlobal && waState.status === "connected") {
-        await sockGlobal.sendMessage(jid, { text: message });
-        console.log(`[WA] ✅ Berhasil kirim konfirmasi pengembalian ke ${jid}`);
-        ensureUserHistoryKey(jid);
-        conversationHistory[jid].push({ role: "assistant", content: message });
-        const system = conversationHistory[jid][0];
-        const rest = conversationHistory[jid].slice(1).slice(-MAX_HISTORY_ITEMS);
-        conversationHistory[jid] = [system, ...rest];
-        saveHistory(conversationHistory);
-      } else {
-        console.warn(`[WA] ⚠️ Bot WhatsApp belum terhubung (status: ${waState.status}), pesan pengembalian ke ${jid} tidak terkirim.`);
-      }
+      await sockGlobal.sendMessage(jid, { text: message });
+      console.log(`[WA] ✅ Berhasil kirim konfirmasi pengembalian ke ${jid}`);
+      ensureUserHistoryKey(jid);
+      conversationHistory[jid].push({ role: "assistant", content: message });
+      const system = conversationHistory[jid][0];
+      const rest = conversationHistory[jid].slice(1).slice(-MAX_HISTORY_ITEMS);
+      conversationHistory[jid] = [system, ...rest];
+      saveHistory(conversationHistory);
     } catch (e) {
       console.error(`[WA] ❌ Gagal kirim konfirmasi pengembalian ke ${jid}:`, e.message || e);
+      return res.status(500).json({ error: "Gagal mengirim pesan WhatsApp: " + (e.message || e) });
     }
-    savePinjaman(pinjamanDB);
+
     res.json({ status: "Barang telah ditandai sebagai dikembalikan", id });
     console.log(
       `[${new Date().toLocaleString("en-US", {
         timeZone: "Asia/Jakarta",
-      })}] ✅ Barang dengan ID ${id} telah dikembalikan.`
+      })}] ✅ Notifikasi pengembalian dikirim ke ${targetNumber}`
     );
   } catch (err) {
     console.error("Error /kembali:", err);
@@ -1270,25 +1279,39 @@ app.post("/kembali", async (req, res) => {
 
 app.post("/pengingat", async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id, number, name, items, start_date, due_date, purpose, notes } = req.body;
     if (!id) {
       return res.status(400).json({ error: "ID peminjaman wajib diisi" });
     }
-    const pinjaman = pinjamanDB.find((p) => p.id === id);
-    if (!pinjaman) {
-      return res.status(404).json({ error: "ID peminjaman tidak ditemukan" });
+
+    if (!sockGlobal || waState.status !== "connected") {
+      return res.status(503).json({
+        error: "Bot WhatsApp belum terhubung ke nomor WA. Silakan buka menu WhatsApp di dashboard dan scan QR terlebih dahulu."
+      });
     }
-    if (pinjaman.status === "dikembalikan") {
-      return res.status(400).json({ error: "Barang sudah dikembalikan sebelumnya" });
+
+    const pinjaman = pinjamanDB.find((p) => String(p.id) === String(id));
+    const targetNumber = number || pinjaman?.number;
+    const targetName = name || pinjaman?.name || "Peminjam";
+    const targetItems = (Array.isArray(items) && items.length > 0) ? items : (pinjaman?.items || []);
+    const targetStartDate = start_date || pinjaman?.start_date || new Date().toISOString();
+    const targetDueDate = due_date || pinjaman?.due_date || new Date().toISOString();
+    const targetPurpose = purpose || pinjaman?.purpose || "-";
+    const targetNotes = notes !== undefined ? notes : (pinjaman?.notes || "");
+
+    if (!targetNumber) {
+      return res.status(400).json({ error: "Nomor WhatsApp peminjam tidak ditemukan / belum diisi" });
     }
-    const { number, name, items, start_date, due_date, purpose, notes } = pinjaman;
-    const jid = formatToWhatsAppJid(number);
+
+    const jid = formatToWhatsAppJid(targetNumber);
     if (!jid) {
-      return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
+      return res.status(400).json({ error: `Nomor WhatsApp tidak valid: ${targetNumber}` });
     }
-    const itemsText = items
-      .map((it, idx) => `${idx + 1}. ${it.item_name} (${it.qty}x)`)
+
+    const itemsText = targetItems
+      .map((it, i) => `${i + 1}. ${it.item_name} (${it.qty}x)`)
       .join("\n");
+
     function formatStart(tgl) {
       try {
         const d = new Date(tgl);
@@ -1313,40 +1336,39 @@ app.post("/pengingat", async (req, res) => {
         return tgl;
       }
     }
-    const startDateText = formatStart(start_date);
-    const dueDateText = formatDue(due_date);
-    let notesText = notes && notes.trim() ? `📄 Catatan: *${notes}*\n` : "";
+
+    const startDateText = formatStart(targetStartDate);
+    const dueDateText = formatDue(targetDueDate);
+    let notesText = targetNotes && targetNotes.trim() ? `📄 Catatan: *${targetNotes}*\n` : "";
     const rawTemplate = await getDynamicTemplate("reminder");
     const reminderMsg = rawTemplate
-      .replace(/{name}/g, name || "")
-      .replace(/{items}/g, itemsText || "")
-      .replace(/{startDate}/g, startDateText || "")
-      .replace(/{dueDate}/g, dueDateText || "")
-      .replace(/{purpose}/g, purpose || "-")
-      .replace(/{notes}/g, notesText || "");
+      .replace(/{name}/g, targetName)
+      .replace(/{items}/g, itemsText || "-")
+      .replace(/{startDate}/g, startDateText)
+      .replace(/{dueDate}/g, dueDateText)
+      .replace(/{purpose}/g, targetPurpose)
+      .replace(/{notes}/g, notesText);
+
     try {
-      if (sockGlobal && waState.status === "connected") {
-        await sockGlobal.sendMessage(jid, { text: reminderMsg });
-        console.log(`[WA] ✅ Berhasil kirim pengingat ke ${jid}`);
-        ensureUserHistoryKey(jid);
-        conversationHistory[jid].push({ role: "assistant", content: reminderMsg });
-        const system = conversationHistory[jid][0];
-        const rest = conversationHistory[jid].slice(1).slice(-MAX_HISTORY_ITEMS);
-        conversationHistory[jid] = [system, ...rest];
-        saveHistory(conversationHistory);
-      } else {
-        console.warn(`[WA] ⚠️ Bot WhatsApp belum terhubung (status: ${waState.status}), pesan pengingat ke ${jid} tidak terkirim.`);
-      }
-      res.json({ status: "Pengingat berhasil dikirim", id });
-      console.log(
-        `[${new Date().toLocaleString("en-US", {
-          timeZone: "Asia/Jakarta",
-        })}] 🔔 Pengingat pengembalian dikirim ke ${number}`
-      );
+      await sockGlobal.sendMessage(jid, { text: reminderMsg });
+      console.log(`[WA] ✅ Berhasil kirim pengingat ke ${jid}`);
+      ensureUserHistoryKey(jid);
+      conversationHistory[jid].push({ role: "assistant", content: reminderMsg });
+      const system = conversationHistory[jid][0];
+      const rest = conversationHistory[jid].slice(1).slice(-MAX_HISTORY_ITEMS);
+      conversationHistory[jid] = [system, ...rest];
+      saveHistory(conversationHistory);
     } catch (e) {
-      console.error("Gagal kirim pengingat:", e.message || e);
-      res.status(500).json({ error: "Gagal mengirim pengingat" });
+      console.error(`[WA] ❌ Gagal kirim pengingat ke ${jid}:`, e.message || e);
+      return res.status(500).json({ error: "Gagal mengirim pesan WhatsApp: " + (e.message || e) });
     }
+
+    res.json({ status: "Pengingat berhasil dikirim", id });
+    console.log(
+      `[${new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Jakarta",
+      })}] 🔔 Pengingat pengembalian dikirim ke ${targetNumber}`
+    );
   } catch (err) {
     console.error("Error /pengingat:", err);
     res.status(500).json({ error: "Gagal memproses pengingat" });
