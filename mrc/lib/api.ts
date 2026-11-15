@@ -107,7 +107,11 @@ export async function createLoan(loan: Omit<Loan, 'id' | 'createdAt' | 'updatedA
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(loan),
   })
-  return await res.json()
+  const data = await res.json()
+  if (!res.ok) {
+    throw new Error(data.error || 'Gagal menyimpan data peminjaman')
+  }
+  return data
 }
 
 

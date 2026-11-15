@@ -1062,6 +1062,18 @@ async function getDynamicTemplate(type) {
   return "";
 }
 
+async function sendWAMessageWithTimeout(jid, content, timeoutMs = 7000) {
+  if (!sockGlobal || waState.status !== "connected") {
+    throw new Error("Bot WhatsApp belum terhubung ke nomor WA");
+  }
+  return Promise.race([
+    sockGlobal.sendMessage(jid, content),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Timeout (7 detik) saat mengirim pesan ke WhatsApp")), timeoutMs)
+    )
+  ]);
+}
+
 app.post("/pinjam", async (req, res) => {
   try {
     const { number, name, start_date, due_date, items, id, purpose, notes } = req.body;
@@ -1150,7 +1162,7 @@ app.post("/pinjam", async (req, res) => {
 
     if (sockGlobal && waState.status === "connected") {
       try {
-        await sockGlobal.sendMessage(jid, { text: message });
+        await sendWAMessageWithTimeout(jid, { text: message });
         console.log(`[WA] ✅ Berhasil kirim pesan peminjaman ke ${jid}`);
       } catch (e) {
         console.error(`[WA] ❌ Gagal kirim WA message (/pinjam) ke ${jid}:`, e.message || e);
@@ -1252,7 +1264,7 @@ app.post("/kembali", async (req, res) => {
       .replace(/{duration}/g, durasiStr);
 
     try {
-      await sockGlobal.sendMessage(jid, { text: message });
+      await sendWAMessageWithTimeout(jid, { text: message });
       console.log(`[WA] ✅ Berhasil kirim konfirmasi pengembalian ke ${jid}`);
       ensureUserHistoryKey(jid);
       conversationHistory[jid].push({ role: "assistant", content: message });
@@ -1350,7 +1362,7 @@ app.post("/pengingat", async (req, res) => {
       .replace(/{notes}/g, notesText);
 
     try {
-      await sockGlobal.sendMessage(jid, { text: reminderMsg });
+      await sendWAMessageWithTimeout(jid, { text: reminderMsg });
       console.log(`[WA] ✅ Berhasil kirim pengingat ke ${jid}`);
       ensureUserHistoryKey(jid);
       conversationHistory[jid].push({ role: "assistant", content: reminderMsg });

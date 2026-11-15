@@ -248,27 +248,32 @@ export default function PeminjamanPage() {
             purpose: purpose,
             notes: notes || undefined
           };
-          await fetch("/external/pinjam", {
+          fetch("/external/pinjam", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(postBody)
+            body: JSON.stringify(postBody),
+            signal: AbortSignal.timeout(6000),
+          }).catch(err => {
+            console.error("Notifikasi WhatsApp peminjaman:", err);
           });
         } catch (err) {
-          console.error("Gagal POST ke API eksternal:", err);
+          console.error("Gagal menyiapkan payload WhatsApp:", err);
         }
       }
 
-      // Update semua serial: jika rfidCode dipinjam, set loanId ke createdLoan.id dan status 0, jika tidak, pastikan loanId null/undefined
-      for (const item of items) {
-        if (!item.items) continue;
-        const updatedSerials = item.items.map(s => {
-          const isBorrowed = validItems.some(li => li.rfidCode === s.rfidCode);
-          if (isBorrowed) {
+      // Update hanya serial yang benar-benar dipinjam (bukan loop semua barang di DB!)
+      const borrowedRfidCodes = new Set(validItems.map(li => li.rfidCode));
+      const itemsToUpdate = items.filter(item =>
+        (item.items || []).some(s => borrowedRfidCodes.has(s.rfidCode) || (createdLoan?.id && s.loanId === createdLoan.id))
+      );
+
+      for (const item of itemsToUpdate) {
+        const updatedSerials = (item.items || []).map(s => {
+          if (borrowedRfidCodes.has(s.rfidCode)) {
             return { ...s, status: 0 as 0, loanId: createdLoan.id };
           } else if (s.loanId === createdLoan.id) {
-            // Serial yang sebelumnya dipinjam loan ini tapi tidak dipilih sekarang, reset loanId
             return { ...s, loanId: undefined };
           } else {
             return s;
