@@ -296,7 +296,7 @@ export default function PengembalianPage() {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ id: returningLoan.id, photo: returnPhoto || undefined })
+          body: JSON.stringify({ id: returningLoan.id })
         })
       } catch (err) {
         console.error("Gagal POST ke API eksternal /kembali:", err)

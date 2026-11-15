@@ -246,8 +246,7 @@ export default function PeminjamanPage() {
             due_date: toWIBISOString(dueJakarta),
             items: itemsBody,
             purpose: purpose,
-            notes: notes || undefined,
-            photo: borrowPhoto || undefined,
+            notes: notes || undefined
           };
           await fetch("/external/pinjam", {
             method: "POST",
