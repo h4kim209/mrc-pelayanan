@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sistem Informasi Pelayanan MRC SMKN 1 Subang",
   "scripts": {
-    "install:all": "npm --prefix mrc install --omit=dev && npm --prefix mrc-bot install --omit=dev",
+    "install:all": "npm --prefix mrc install --omit=dev --legacy-peer-deps && npm --prefix mrc-bot install --omit=dev",
     "build": "npm --prefix mrc run build",
     "start": "pm2 start ecosystem.config.js",
     "restart": "pm2 restart ecosystem.config.js",
