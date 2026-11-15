@@ -1004,62 +1004,9 @@ async function getDynamicTemplate(type) {
   return "";
 }
 
-// Helper untuk membaca buffer foto (base64, file lokal, atau via URL)
-async function getImageBuffer(photo) {
-  if (!photo || typeof photo !== "string") return null;
-
-  try {
-    // 1. Format Base64 Data URL
-    if (photo.startsWith("data:image/")) {
-      const parts = photo.split(",");
-      if (parts[1]) {
-        return Buffer.from(parts[1], "base64");
-      }
-    }
-
-    // 2. Format URL HTTP/HTTPS
-    if (photo.startsWith("http://") || photo.startsWith("https://")) {
-      const resp = await axios.get(photo, { responseType: "arraybuffer", timeout: 6000 });
-      return Buffer.from(resp.data);
-    }
-
-    // 3. File lokal di folder upload captures
-    const filename = path.basename(photo);
-    const candidatePaths = [
-      photo,
-      path.join(__dirname, "..", "mrc", "public", "uploads", "captures", filename),
-      path.join(__dirname, "public", "uploads", "captures", filename),
-      path.join(__dirname, "..", "public", "uploads", "captures", filename),
-      path.join(process.cwd(), "mrc", "public", "uploads", "captures", filename),
-      path.join(process.cwd(), "public", "uploads", "captures", filename),
-    ];
-
-    for (const p of candidatePaths) {
-      if (fs.existsSync(p)) {
-        return fs.readFileSync(p);
-      }
-    }
-
-    // 4. Coba ambil dari Next.js lokal port 3554
-    if (photo.startsWith("/")) {
-      try {
-        const localUrl = `http://127.0.0.1:3554${photo}`;
-        const resp = await axios.get(localUrl, { responseType: "arraybuffer", timeout: 4000 });
-        return Buffer.from(resp.data);
-      } catch (errLocal) {
-        // Abaikan jika tidak dapat dijangkau
-      }
-    }
-  } catch (err) {
-    console.error("⚠️ Gagal memuat buffer gambar untuk WA:", err.message);
-  }
-
-  return null;
-}
-
 app.post("/pinjam", async (req, res) => {
   try {
-    const { number, name, start_date, due_date, items, id, purpose, notes, photo } = req.body;
+    const { number, name, start_date, due_date, items, id, purpose, notes } = req.body;
 
     if (!number || !name || !start_date || !due_date || !Array.isArray(items) || !purpose) {
       return res.status(400).json({ error: "Data tidak lengkap" });
@@ -1124,7 +1071,6 @@ app.post("/pinjam", async (req, res) => {
       items,
       purpose,
       notes: notes || "",
-      photo: photo || null,
       status: "dipinjam",
       returned_at: null,
     });
@@ -1139,35 +1085,9 @@ app.post("/pinjam", async (req, res) => {
 
     if (sockGlobal) {
       try {
-        const imageBuf = await getImageBuffer(photo);
-        if (imageBuf) {
-          // Kirim gambar bukti serah terima dengan pesan sebagai caption
-          if (message.length <= 1000) {
-            await sockGlobal.sendMessage(jid, {
-              image: imageBuf,
-              caption: message,
-            });
-          } else {
-            await sockGlobal.sendMessage(jid, {
-              image: imageBuf,
-              caption: "📸 *Foto Bukti Penyerahan Barang - MRC SMKN 1 Subang*",
-            });
-            await sockGlobal.sendMessage(jid, { text: message });
-          }
-          console.log(`[WA] ✅ Foto bukti dan pesan peminjaman terkirim ke ${number}`);
-        } else {
-          // Jika tanpa foto, kirim pesan teks biasa
-          await sockGlobal.sendMessage(jid, { text: message });
-          console.log(`[WA] ✅ Pesan teks peminjaman terkirim ke ${number}`);
-        }
+        await sockGlobal.sendMessage(jid, { text: message });
       } catch (e) {
-        console.error("Gagal kirim WA message (/pinjam) dengan gambar:", e.message || e);
-        // Fallback: coba kirim teks biasa jika pengiriman gambar gagal
-        try {
-          await sockGlobal.sendMessage(jid, { text: message });
-        } catch (errFallback) {
-          console.error("Fallback kirim teks WA juga gagal:", errFallback.message || errFallback);
-        }
+        console.error("Gagal kirim WA message (/pinjam):", e.message || e);
       }
     } else {
       console.warn("⚠️ sockGlobal belum terhubung, pesan WA tidak terkirim.");
@@ -1192,7 +1112,7 @@ app.post("/pinjam", async (req, res) => {
 
 app.post("/kembali", async (req, res) => {
   try {
-    const { id, photo } = req.body;
+    const { id } = req.body;
     if (!id) {
       return res.status(400).json({ error: "ID peminjaman wajib diisi" });
     }
@@ -1207,7 +1127,6 @@ app.post("/kembali", async (req, res) => {
     }
     pinjamanDB[idx].status = "dikembalikan";
     pinjamanDB[idx].returned_at = new Date().toISOString();
-    if (photo) pinjamanDB[idx].return_photo = photo;
     const { number, name, items, start_date, purpose, notes } = pinjamanDB[idx];
     const jid = number.includes("@s.whatsapp.net")
       ? number
@@ -1255,25 +1174,7 @@ app.post("/kembali", async (req, res) => {
 
     try {
       if (sockGlobal) {
-        const imageBuf = await getImageBuffer(photo);
-        if (imageBuf) {
-          if (message.length <= 1000) {
-            await sockGlobal.sendMessage(jid, {
-              image: imageBuf,
-              caption: message,
-            });
-          } else {
-            await sockGlobal.sendMessage(jid, {
-              image: imageBuf,
-              caption: "📸 *Foto Bukti Pengembalian Barang - MRC SMKN 1 Subang*",
-            });
-            await sockGlobal.sendMessage(jid, { text: message });
-          }
-          console.log(`[WA] ✅ Foto bukti dan pesan pengembalian terkirim ke ${number}`);
-        } else {
-          await sockGlobal.sendMessage(jid, { text: message });
-          console.log(`[WA] ✅ Pesan teks pengembalian terkirim ke ${number}`);
-        }
+        await sockGlobal.sendMessage(jid, { text: message });
         ensureUserHistoryKey(jid);
         conversationHistory[jid].push({ role: "assistant", content: message });
         const system = conversationHistory[jid][0];
@@ -1285,11 +1186,6 @@ app.post("/kembali", async (req, res) => {
       }
     } catch (e) {
       console.error("Gagal kirim konfirmasi pengembalian:", e.message || e);
-      try {
-        await sockGlobal.sendMessage(jid, { text: message });
-      } catch (errFallback) {
-        // ignore
-      }
     }
     savePinjaman(pinjamanDB);
     res.json({ status: "Barang telah ditandai sebagai dikembalikan", id });
