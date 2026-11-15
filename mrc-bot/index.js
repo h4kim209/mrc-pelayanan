@@ -1529,7 +1529,7 @@ app.post("/wa/send", async (req, res) => {
     if (!jid || !text) {
       return res.status(400).json({ error: "jid dan text wajib diisi" });
     }
-    if (!sockGlobal) {
+    if (!sockGlobal || waState.status !== "connected") {
       return res.status(503).json({ error: "WhatsApp belum terhubung" });
     }
     const targetJid = formatToWhatsAppJid(jid);
@@ -1537,7 +1537,7 @@ app.post("/wa/send", async (req, res) => {
       return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
     }
 
-    await sockGlobal.sendMessage(targetJid, { text });
+    await sendWAMessageWithTimeout(targetJid, { text });
 
     // Track sent message
     waState.recentMessages.push({
