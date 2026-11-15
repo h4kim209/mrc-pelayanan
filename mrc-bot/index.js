@@ -1,4 +1,13 @@
 require("dotenv").config();
+
+// Cegah bot berhenti saat terjadi disconnect socket / jaringan tidak stabil
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("⚠️ Baileys/Network Unhandled Rejection (bot tetap aktif):", reason?.message || reason);
+});
+process.on("uncaughtException", (error) => {
+  console.error("⚠️ Baileys/Network Uncaught Exception (bot tetap aktif):", error?.message || error);
+});
+
 const fs = require("fs");
 const path = require("path");
 const {
