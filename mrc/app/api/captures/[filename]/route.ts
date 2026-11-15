@@ -16,9 +16,16 @@ export async function GET(
 
     // Sanitize filename to prevent directory traversal
     const safeName = path.basename(filename);
-    const filePath = path.join(process.cwd(), "public", "uploads", "captures", safeName);
+    const cwd = process.cwd();
+    const candidatePaths = [
+      path.join(cwd, "public", "uploads", "captures", safeName),
+      path.join(cwd, "mrc", "public", "uploads", "captures", safeName),
+      path.join(cwd, "..", "mrc", "public", "uploads", "captures", safeName),
+    ];
 
-    if (!fs.existsSync(filePath)) {
+    const filePath = candidatePaths.find((p) => fs.existsSync(p));
+
+    if (!filePath) {
       return new NextResponse("File not found", { status: 404 });
     }
 

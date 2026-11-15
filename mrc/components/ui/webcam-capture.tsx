@@ -120,11 +120,10 @@ export default function WebcamCapture({
 
       const data = await res.json();
       if (!res.ok || !data.success) {
-        throw new Error(data.error || "Gagal mengunggah foto ke server");
+        throw new Error(data.detail ? `${data.error}: ${data.detail}` : (data.error || "Gagal mengunggah foto ke server"));
       }
 
-      // Keep local preview if already set, but save server path
-      if (!photoPreview) setPhotoPreview(data.path);
+      setPhotoPreview(data.path);
       onPhotoCaptured(data.path);
     } catch (err: any) {
       console.error("Upload error:", err);
@@ -180,20 +179,50 @@ export default function WebcamCapture({
     onPhotoCaptured(null);
   };
 
-  // Fallback: file upload
+  // Fallback: file upload with auto-resize and compression
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const dataUrl = event.target?.result as string;
-      if (dataUrl) {
-        stopStream();
-        uploadImage(dataUrl);
+    setErrorMsg(null);
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const canvas = canvasRef.current || document.createElement("canvas");
+      canvasRef.current = canvas;
+
+      let width = img.width;
+      let height = img.height;
+      const maxDim = 1280;
+
+      if (width > maxDim || height > maxDim) {
+        if (width > height) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
       }
+
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.drawImage(img, 0, 0, width, height);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+
+      setPhotoPreview(dataUrl);
+      stopStream();
+      uploadImage(dataUrl);
     };
-    reader.readAsDataURL(file);
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      setErrorMsg("Gagal memuat berkas gambar.");
+    };
+    img.src = url;
   };
 
   return (
@@ -203,7 +232,7 @@ export default function WebcamCapture({
           <Camera className="w-5 h-5 text-accent-600 dark:text-accent-400" />
           <span className="text-sm font-semibold text-gray-900 dark:text-white">{label}</span>
         </div>
-        {photoPreview && (
+        {photoPreview && !errorMsg && !isUploading && (
           <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
             <CheckCircle className="w-3.5 h-3.5" />
             Foto Tersimpan

@@ -153,7 +153,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 
 
 // Add this function to handle returning a loan
-export async function returnLoan(loanId: string): Promise<void> {
+export async function returnLoan(loanId: string, returnPhoto?: string | null): Promise<void> {
   await fetch('/api/loans', {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -161,6 +161,7 @@ export async function returnLoan(loanId: string): Promise<void> {
       id: loanId,
       status: 'dikembalikan',
       returnDate: new Date().toISOString(),
+      ...(returnPhoto ? { returnPhoto } : {}),
     }),
   })
 }

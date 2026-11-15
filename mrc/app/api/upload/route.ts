@@ -4,6 +4,23 @@ import fs from "fs";
 
 export const runtime = "nodejs";
 
+function getUploadDir(subfolder: string): string {
+  const cwd = process.cwd();
+  const primary = path.join(cwd, "public", subfolder);
+  if (fs.existsSync(path.join(cwd, "public"))) {
+    return primary;
+  }
+  const inMrc = path.join(cwd, "mrc", "public", subfolder);
+  if (fs.existsSync(path.join(cwd, "mrc", "public"))) {
+    return inMrc;
+  }
+  const parentMrc = path.join(cwd, "..", "mrc", "public", subfolder);
+  if (fs.existsSync(path.join(cwd, "..", "mrc", "public"))) {
+    return parentMrc;
+  }
+  return primary;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const contentType = req.headers.get("content-type") || "";
@@ -17,17 +34,25 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "No image data provided" }, { status: 400 });
       }
 
-      // Format: data:image/jpeg;base64,/9j/4AAQSkZJRg...
-      const matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-      if (!matches || matches.length !== 3) {
+      let ext = "jpg";
+      let base64Data = image;
+
+      const commaIndex = image.indexOf(",");
+      if (commaIndex !== -1) {
+        const meta = image.substring(0, commaIndex);
+        base64Data = image.substring(commaIndex + 1);
+        if (meta.includes("png")) ext = "png";
+        else if (meta.includes("webp")) ext = "webp";
+      }
+
+      const buffer = Buffer.from(base64Data.replace(/[\r\n\s]/g, ""), "base64");
+      if (buffer.length === 0) {
         return NextResponse.json({ error: "Invalid base64 image data" }, { status: 400 });
       }
 
-      const ext = matches[1].includes("png") ? "png" : "jpg";
-      const buffer = Buffer.from(matches[2], "base64");
       const fileName = `${type}_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${ext}`;
+      const uploadDir = getUploadDir(path.join("uploads", "captures"));
 
-      const uploadDir = path.join(process.cwd(), "public", "uploads", "captures");
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
@@ -54,7 +79,7 @@ export async function POST(req: NextRequest) {
     // @ts-ignore
     const fileName = file.name || `${Date.now()}.png`;
     const buffer = Buffer.from(arrayBuffer);
-    const uploadDir = path.join(process.cwd(), "public", "assets", "img");
+    const uploadDir = getUploadDir(path.join("assets", "img"));
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
@@ -63,6 +88,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, path: `/assets/img/${fileName}` });
   } catch (err: any) {
     console.error("Error in POST /api/upload:", err);
-    return NextResponse.json({ error: "Upload failed", detail: String(err) }, { status: 500 });
+    return NextResponse.json({
+      error: "Upload failed",
+      detail: err?.message || String(err),
+    }, { status: 500 });
   }
 }

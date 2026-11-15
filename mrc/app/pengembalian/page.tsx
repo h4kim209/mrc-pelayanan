@@ -224,7 +224,7 @@ export default function PengembalianPage() {
       setError("")
       setSuccess("")
 
-      await api.returnLoan(returningLoan.id)
+      await api.returnLoan(returningLoan.id, returnPhoto)
       // Tidak perlu update stock manual, status serial akan diupdate otomatis oleh backend jika diperlukan
     } catch (err) {
       setError("Gagal memproses pengembalian")
