@@ -30,7 +30,7 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    const botUrl = process.env.BOT_API_URL || "http://128.1.1.5:3445"
+    const botUrl = process.env.BOT_API_URL || "http://127.0.0.1:3445"
     return [
       {
         source: '/external/:path*',
