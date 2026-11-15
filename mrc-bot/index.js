@@ -297,67 +297,113 @@ async function getAIResponse(messages) {
   }
 }
 
+let sockGlobal = null;
+const BOT_START_TIME = Date.now();
+const AUTH_DIR = path.join(__dirname, "auth_info");
+let isStartingBot = false;
+let reconnectTimeout = null;
+
+// ===== WhatsApp Dashboard State =====
+const waState = {
+  status: "disconnected", // "connected" | "disconnected" | "connecting" | "qr"
+  qrDataUrl: null,        // base64 QR image for web
+  recentMessages: [],     // { id, from, pushName, text, timestamp, fromMe }
+};
+const MAX_RECENT_MESSAGES = 200;
+
 // ===== start bot =====
 async function startBot() {
-  const { state, saveCreds } = await useMultiFileAuthState("auth_info");
-  const { version } = await fetchLatestBaileysVersion();
-  await checkGhostscript();
+  if (isStartingBot) {
+    console.log("[WA] startBot sedang berjalan, lewati panggilan duplikat.");
+    return;
+  }
+  isStartingBot = true;
 
-  const sock = makeWASocket({
-    version,
-    auth: state,
-    printQRInTerminal: false,
-  });
+  if (reconnectTimeout) {
+    clearTimeout(reconnectTimeout);
+    reconnectTimeout = null;
+  }
 
-  sockGlobal = sock;
-
-  sock.ev.on("connection.update", async (update) => {
-    const { connection, lastDisconnect, qr } = update;
-    if (qr) {
-      console.log("Scan QR berikut untuk login WhatsApp:");
-      qrcode.generate(qr, { small: true });
-      // Generate QR as data URL for web dashboard
-      try {
-        waState.qrDataUrl = await QRCode.toDataURL(qr, { width: 300 });
-      } catch (e) {
-        console.error("QR toDataURL error:", e.message);
-      }
-      waState.status = "qr";
+  // Bersihkan socket lama jika ada agar tidak memory leak atau multi-listener
+  if (sockGlobal) {
+    try {
+      sockGlobal.ev.removeAllListeners();
+      sockGlobal.end?.();
+    } catch (e) {
+      console.warn("[WA] Error saat menutup socket lama (diabaikan):", e.message);
     }
-    if (connection === "close") {
-      waState.status = "disconnected";
-      waState.qrDataUrl = null;
-      const reason = lastDisconnect?.error?.output?.statusCode;
-      if (reason !== DisconnectReason.loggedOut) {
-        console.log("Koneksi terputus, reconnect...");
-        startBot();
-      } else {
-        console.log("Anda logout, menghapus folder auth_info...");
-        // Auto-delete auth_info on logout
-        const authDir = path.join(__dirname, "auth_info");
+    sockGlobal = null;
+  }
+
+  try {
+    const { state, saveCreds } = await useMultiFileAuthState(AUTH_DIR);
+    let version;
+    try {
+      const v = await fetchLatestBaileysVersion();
+      version = v.version;
+    } catch (e) {
+      console.warn("[WA] Gagal fetch versi Baileys, gunakan default:", e.message);
+    }
+    await checkGhostscript();
+
+    const sock = makeWASocket({
+      version,
+      auth: state,
+      printQRInTerminal: false,
+      keepAliveIntervalMs: 25000,
+      defaultQueryTimeoutMs: 60000,
+      connectTimeoutMs: 60000,
+      emitOwnEvents: false,
+      markOnlineOnConnect: true,
+      browser: ["MRC SMKN 1 Subang", "Chrome", "1.0.0"],
+      syncFullHistory: false,
+    });
+
+    sockGlobal = sock;
+
+    sock.ev.on("connection.update", async (update) => {
+      const { connection, lastDisconnect, qr } = update;
+      if (qr) {
+        console.log("Scan QR berikut untuk login WhatsApp:");
+        qrcode.generate(qr, { small: true });
+        // Generate QR as data URL for web dashboard
         try {
-          if (fs.existsSync(authDir)) {
-            fs.rmSync(authDir, { recursive: true, force: true });
-            console.log("✅ Folder auth_info berhasil dihapus.");
-          }
+          waState.qrDataUrl = await QRCode.toDataURL(qr, { width: 300 });
         } catch (e) {
-          console.error("Gagal hapus auth_info:", e.message);
+          console.error("QR toDataURL error:", e.message);
         }
-        // Restart bot so new QR appears
-        setTimeout(() => startBot(), 2000);
+        waState.status = "qr";
       }
-    } else if (connection === "connecting") {
-      waState.status = "connecting";
-    } else if (connection === "open") {
-      waState.status = "connected";
-      waState.qrDataUrl = null;
-      console.log("✅ Bot WhatsApp MRC siap!");
-    }
-  });
+      if (connection === "close") {
+        waState.status = "disconnected";
+        waState.qrDataUrl = null;
+        const statusCode = lastDisconnect?.error?.output?.statusCode;
+        console.log(`[WA] Koneksi terputus. Status code: ${statusCode || "unknown"}. Reconnecting...`);
 
-  sock.ev.on("creds.update", saveCreds);
+        // Bersihkan socket saat disconnect
+        try {
+          sock.ev.removeAllListeners();
+        } catch (e) {}
 
-  sock.ev.on("messages.upsert", async (m) => {
+        // Auto reconnect setelah 5 detik (JANGAN hapus auth_info agar sesi tetap utuh)
+        if (!reconnectTimeout) {
+          reconnectTimeout = setTimeout(() => {
+            reconnectTimeout = null;
+            startBot().catch((err) => console.error("[WA reconnect error]:", err.message));
+          }, 5000);
+        }
+      } else if (connection === "connecting") {
+        waState.status = "connecting";
+      } else if (connection === "open") {
+        waState.status = "connected";
+        waState.qrDataUrl = null;
+        console.log("✅ Bot WhatsApp MRC siap dan selalu aktif 24/7!");
+      }
+    });
+
+    sock.ev.on("creds.update", saveCreds);
+
+    sock.ev.on("messages.upsert", async (m) => {
     // ====== KONFIGURASI LOKASI DAN ADMIN ======
     const MRC_LOCATION = {
       latitude: -6.5556091,
@@ -965,18 +1011,19 @@ async function startBot() {
       console.error("Handler messages.upsert error:", err);
     }
   });
+  } catch (err) {
+    console.error("[WA] Error fatal saat inisialisasi startBot:", err?.message || err);
+    waState.status = "disconnected";
+    if (!reconnectTimeout) {
+      reconnectTimeout = setTimeout(() => {
+        reconnectTimeout = null;
+        startBot().catch(console.error);
+      }, 10000);
+    }
+  } finally {
+    isStartingBot = false;
+  }
 }
-
-let sockGlobal;
-const BOT_START_TIME = Date.now();
-
-// ===== WhatsApp Dashboard State =====
-const waState = {
-  status: "disconnected", // "connected" | "disconnected" | "connecting" | "qr"
-  qrDataUrl: null,        // base64 QR image for web
-  recentMessages: [],     // { id, from, pushName, text, timestamp, fromMe }
-};
-const MAX_RECENT_MESSAGES = 200;
 
 // Endpoint untuk peminjaman barang
 
@@ -1378,6 +1425,9 @@ app.post("/book", async (req, res) => {
 
 // GET /wa/status — status koneksi & QR
 app.get("/wa/status", (req, res) => {
+  if (waState.status === "disconnected" && !isStartingBot && !reconnectTimeout) {
+    startBot().catch((err) => console.error("[Auto-heal error]:", err.message));
+  }
   res.json({
     status: waState.status,
     qrDataUrl: waState.qrDataUrl,
@@ -1489,6 +1539,14 @@ app.post("/wa/logout", async (req, res) => {
     res.status(500).json({ error: "Gagal logout" });
   }
 });
+
+// Watchdog: memastikan koneksi Baileys selalu aktif 24/7 di background tanpa perlu membuka menu
+setInterval(() => {
+  if (waState.status === "disconnected" && !isStartingBot && !reconnectTimeout) {
+    console.log("⏰ [Watchdog] Memastikan bot WhatsApp tetap aktif... Menghubungkan ulang...");
+    startBot().catch((err) => console.error("[Watchdog error]:", err?.message || err));
+  }
+}, 20000);
 
 const PORT = process.env.PORT || 3445;
 app.listen(PORT, () => {
