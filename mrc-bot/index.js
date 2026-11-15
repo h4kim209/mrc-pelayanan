@@ -15,7 +15,8 @@ const {
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
-  downloadMediaMessage
+  downloadMediaMessage,
+  Browsers
 } = require("@whiskeysockets/baileys");
 const qrcode = require("qrcode-terminal");
 const QRCode = require("qrcode");
@@ -339,6 +340,7 @@ async function startBot() {
   if (sockGlobal) {
     try {
       sockGlobal.ev.removeAllListeners();
+      sockGlobal.ws?.close?.();
       sockGlobal.end?.();
     } catch (e) {
       console.warn("[WA] Error saat menutup socket lama (diabaikan):", e.message);
@@ -361,13 +363,14 @@ async function startBot() {
       version,
       auth: state,
       printQRInTerminal: false,
-      keepAliveIntervalMs: 25000,
+      keepAliveIntervalMs: 30000,
       defaultQueryTimeoutMs: 60000,
       connectTimeoutMs: 60000,
       emitOwnEvents: false,
-      markOnlineOnConnect: true,
-      browser: ["MRC SMKN 1 Subang", "Chrome", "1.0.0"],
+      markOnlineOnConnect: false,
+      browser: Browsers.ubuntu("Chrome"),
       syncFullHistory: false,
+      retryRequestDelayMs: 500,
     });
 
     sockGlobal = sock;
@@ -389,19 +392,36 @@ async function startBot() {
         waState.status = "disconnected";
         waState.qrDataUrl = null;
         const statusCode = lastDisconnect?.error?.output?.statusCode;
-        console.log(`[WA] Koneksi terputus. Status code: ${statusCode || "unknown"}. Reconnecting...`);
+        const isLoggedOut = statusCode === DisconnectReason.loggedOut;
+        console.log(`[WA] Koneksi terputus. Status code: ${statusCode || "unknown"}. Reconnect: ${!isLoggedOut}`);
 
         // Bersihkan socket saat disconnect
         try {
           sock.ev.removeAllListeners();
+          sock.ws?.close?.();
         } catch (e) {}
 
-        // Auto reconnect setelah 5 detik (JANGAN hapus auth_info agar sesi tetap utuh)
-        if (!reconnectTimeout) {
+        if (isLoggedOut) {
+          console.warn("[WA] Sesi WhatsApp logout dari HP. Menghapus folder auth_info...");
+          try {
+            if (fs.existsSync(AUTH_DIR)) {
+              fs.rmSync(AUTH_DIR, { recursive: true, force: true });
+            }
+          } catch (e) {}
+        }
+
+        // Jika status 440 (conflict) atau 408 (timed out), WhatsApp edge servers butuh jeda melepaskan TCP session
+        let delayMs = 4000;
+        if (statusCode === 440 || statusCode === 408) {
+          delayMs = 12000;
+          console.log(`[WA] Menunggu jeda aman ${delayMs / 1000} detik sebelum menyambungkan ulang...`);
+        }
+
+        if (!isLoggedOut && !reconnectTimeout) {
           reconnectTimeout = setTimeout(() => {
             reconnectTimeout = null;
             startBot().catch((err) => console.error("[WA reconnect error]:", err.message));
-          }, 5000);
+          }, delayMs);
         }
       } else if (connection === "connecting") {
         waState.status = "connecting";
@@ -1062,14 +1082,21 @@ async function getDynamicTemplate(type) {
   return "";
 }
 
-async function sendWAMessageWithTimeout(jid, content, timeoutMs = 7000) {
-  if (!sockGlobal || waState.status !== "connected") {
-    throw new Error("Bot WhatsApp belum terhubung ke nomor WA");
+async function sendWAMessageWithRetry(jid, content, maxWaitMs = 15000) {
+  const startTime = Date.now();
+  // Jika bot sedang reconnecting, beri kesempatan hingga 15 detik untuk menyambung kembali
+  while ((!sockGlobal || waState.status !== "connected") && Date.now() - startTime < maxWaitMs) {
+    await new Promise((r) => setTimeout(r, 1000));
   }
+
+  if (!sockGlobal || waState.status !== "connected") {
+    throw new Error("Bot WhatsApp belum terhubung ke nomor WA (timeout menunggu koneksi)");
+  }
+
   return Promise.race([
     sockGlobal.sendMessage(jid, content),
     new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("Timeout (7 detik) saat mengirim pesan ke WhatsApp")), timeoutMs)
+      setTimeout(() => reject(new Error("Timeout (10 detik) saat mengirim pesan ke WhatsApp")), 10000)
     )
   ]);
 }
@@ -1080,12 +1107,6 @@ app.post("/pinjam", async (req, res) => {
 
     if (!number || !name || !start_date || !due_date || !Array.isArray(items) || !purpose) {
       return res.status(400).json({ error: "Data tidak lengkap" });
-    }
-
-    if (!sockGlobal || waState.status !== "connected") {
-      return res.status(503).json({
-        error: "Bot WhatsApp belum terhubung ke nomor WA. Silakan buka menu WhatsApp di dashboard untuk scan QR."
-      });
     }
 
     function formatStart(tgl) {
@@ -1160,15 +1181,11 @@ app.post("/pinjam", async (req, res) => {
     conversationHistory[jid] = [system, ...rest];
     saveHistory(conversationHistory);
 
-    if (sockGlobal && waState.status === "connected") {
-      try {
-        await sendWAMessageWithTimeout(jid, { text: message });
-        console.log(`[WA] ✅ Berhasil kirim pesan peminjaman ke ${jid}`);
-      } catch (e) {
-        console.error(`[WA] ❌ Gagal kirim WA message (/pinjam) ke ${jid}:`, e.message || e);
-      }
-    } else {
-      console.warn(`[WA] ⚠️ Bot WhatsApp belum terhubung (status: ${waState.status}), pesan ke ${jid} tidak terkirim.`);
+    try {
+      await sendWAMessageWithRetry(jid, { text: message });
+      console.log(`[WA] ✅ Berhasil kirim pesan peminjaman ke ${jid}`);
+    } catch (e) {
+      console.error(`[WA] ❌ Gagal kirim WA message (/pinjam) ke ${jid}:`, e.message || e);
     }
 
 
@@ -1193,12 +1210,6 @@ app.post("/kembali", async (req, res) => {
     const { id, number, name, items, start_date, purpose, notes } = req.body;
     if (!id) {
       return res.status(400).json({ error: "ID peminjaman wajib diisi" });
-    }
-
-    if (!sockGlobal || waState.status !== "connected") {
-      return res.status(503).json({
-        error: "Bot WhatsApp belum terhubung ke nomor WA. Silakan buka menu WhatsApp di dashboard dan scan QR terlebih dahulu."
-      });
     }
 
     const idx = pinjamanDB.findIndex((p) => String(p.id) === String(id));
@@ -1264,7 +1275,7 @@ app.post("/kembali", async (req, res) => {
       .replace(/{duration}/g, durasiStr);
 
     try {
-      await sendWAMessageWithTimeout(jid, { text: message });
+      await sendWAMessageWithRetry(jid, { text: message });
       console.log(`[WA] ✅ Berhasil kirim konfirmasi pengembalian ke ${jid}`);
       ensureUserHistoryKey(jid);
       conversationHistory[jid].push({ role: "assistant", content: message });
@@ -1294,12 +1305,6 @@ app.post("/pengingat", async (req, res) => {
     const { id, number, name, items, start_date, due_date, purpose, notes } = req.body;
     if (!id) {
       return res.status(400).json({ error: "ID peminjaman wajib diisi" });
-    }
-
-    if (!sockGlobal || waState.status !== "connected") {
-      return res.status(503).json({
-        error: "Bot WhatsApp belum terhubung ke nomor WA. Silakan buka menu WhatsApp di dashboard dan scan QR terlebih dahulu."
-      });
     }
 
     const pinjaman = pinjamanDB.find((p) => String(p.id) === String(id));
@@ -1362,7 +1367,7 @@ app.post("/pengingat", async (req, res) => {
       .replace(/{notes}/g, notesText);
 
     try {
-      await sendWAMessageWithTimeout(jid, { text: reminderMsg });
+      await sendWAMessageWithRetry(jid, { text: reminderMsg });
       console.log(`[WA] ✅ Berhasil kirim pengingat ke ${jid}`);
       ensureUserHistoryKey(jid);
       conversationHistory[jid].push({ role: "assistant", content: reminderMsg });
@@ -1529,15 +1534,12 @@ app.post("/wa/send", async (req, res) => {
     if (!jid || !text) {
       return res.status(400).json({ error: "jid dan text wajib diisi" });
     }
-    if (!sockGlobal || waState.status !== "connected") {
-      return res.status(503).json({ error: "WhatsApp belum terhubung" });
-    }
     const targetJid = formatToWhatsAppJid(jid);
     if (!targetJid) {
       return res.status(400).json({ error: "Nomor WhatsApp tidak valid" });
     }
 
-    await sendWAMessageWithTimeout(targetJid, { text });
+    await sendWAMessageWithRetry(targetJid, { text });
 
     // Track sent message
     waState.recentMessages.push({
