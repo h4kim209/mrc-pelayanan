@@ -900,7 +900,7 @@ export default function RiwayatPage() {
                             </ul>
                           </div>
                         </div>
-                      ) : null}
+                      ) : <div />}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>

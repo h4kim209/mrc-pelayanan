@@ -732,7 +732,7 @@ export default function PengembalianPage() {
                             </ul>
                           </div>
                         </div>
-                      ) : null}
+                      ) : <div />}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -775,7 +775,7 @@ export default function PengembalianPage() {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>Konfirmasi Pengingat</AlertDialogTitle>
-                    <AlertDialogDescription asChild>
+                    <AlertDialogDescription>
                       Kirim pengingat pengembalian barang ke <span className="font-semibold">{detailLoan?.borrower?.name}</span>?
                     </AlertDialogDescription>
                   </AlertDialogHeader>
