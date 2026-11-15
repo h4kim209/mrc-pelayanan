@@ -1,5 +1,5 @@
 import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Layout from "@/components/layout/layout";
 import { Toaster } from "@/components/ui/sonner";
@@ -10,14 +10,19 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0ea5e9",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "MRC Aplikasi Peminjaman Barang Sekolah",
   description: "Sistem pencatatan peminjaman barang sekolah",
   ...(process.env.NODE_ENV === "production" && {
     manifest: "/manifest.json",
-    themeColor: "#0ea5e9",
   }),
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   generator: "v0.dev",
 };
 
